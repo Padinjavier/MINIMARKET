@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">MINIMARKET</string>
+
+
+    <!--<string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>-->
+
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="modo">MODO</string>
+    <string name="venta">Venta</string>
+    <string name="ingreso">Ingreso</string>
+    <string name="tienda_javier">REGISTRO DE TIENDA</string>
+    <string name="by_padin_javier">By:CHAHUMELLOPA</string>
+    <string name="title_ventana1">Home</string>
+    <string name="title_ventana2">Ingreso</string>
+    <string name="title_ventana3">Venta</string>
+    <string name="nombre">NOMBRE:</string>
+    <string name="marca">MARCA:</string>
+    <string name="precio">PRECIO:</string>
+    <string name="cantidad">CANTIDAD:</string>
+    <string name="H_nombre_producto">INKA KOLA</string>
+    <string name="H_Marca">COCA COLA</string>
+    <string name="H_precio">0.00</string>
+    <string name="H_cantidad">0</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_page">Home Page</string>
+    <string name="buscar_por_nombre_de_producto">Buscar por nombre de producto</string>
+    <string name="stock_productos">Stock Productos</string>
+    <string name="alerta">ALERTA</string>
+    <string name="productos_por_vencer">Productos por vencer</string>
+    <string name="alerta_ya_vencidos">ALERTA YA VENCIDOS</string>
+    <string name="ingreso_de_productos">INGRESO DE PRODUCTOS</string>
+    <string name="ventas">Ventas</string>
+    <string name="reposiciones">Reposiciones</string>
+    <string name="caducos">Caducos</string>
+    <string name="proximamente">PROXIMAMENTE</string>
+    <string name="codigo">CODIGO</string>
+    <string name="codigo_de_barra">CODIGO DE BARRA</string>
+    <string name="fecha_v">FECHA V</string>
+
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_ingreso">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.minimarket.ui.home.HomeFragment"
+        android:label="@string/title_ventana1"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_ingreso"
+        android:name="com.example.minimarket.ui.ingreso.IngresoFragment"
+        android:label="@string/title_ventana2"
+        tools:layout="@layout/fragment_ingreso" />
+    <fragment
+        android:id="@+id/nav_venta"
+        android:name="com.example.minimarket.ui.venta.VentaFragment"
+        android:label="@string/title_ventana3"
+        tools:layout="@layout/fragment_venta" />
+</navigation>

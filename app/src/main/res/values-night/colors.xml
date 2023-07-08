@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="txt_general">#000000</color>
+    <color name="fondo">#d4f1db</color>
+    <color name="busqueda">#E92F2F</color>
+
+    <color name="I_fondo">#AED9FF</color>
+    <color name="I_txt_principal">#FFFFFF</color>
+    <color name="I_busqueda">#C2EABD</color>
+    <color name="I_txt_secundario">#333333</color>
+    <color name="I_txt_hint">#1B495E</color>
+
+</resources>
