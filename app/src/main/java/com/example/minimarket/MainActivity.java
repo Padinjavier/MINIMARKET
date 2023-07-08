@@ -2,11 +2,16 @@ package com.example.minimarket;
 
 
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.example.minimarket.DB.DBHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    private Button crear_db;
 
 
     @Override
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity ma = MainActivity.this;
         swDarkMode = (Switch) findViewById(R.id.switch4);
         sp = ma.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
         editor = sp.edit();
         // Establecer el estado del interruptor y configurar el listener
         boolean isDarkMode = sp.getBoolean(THEME_KEY, false);
@@ -74,6 +81,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Establecer el tema según el estado almacenado en las preferencias compartidas
         setDayNight(isDarkMode);
+
+        crear_db=findViewById(R.id.CREARDB);
+
+        crear_db.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                SQLiteDatabase db=dbHelper.getWritableDatabase();
+                if(db!=null){
+                    Toast.makeText(MainActivity.this,"BASE DE DATOS CREADA",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this,"ERROR AL CREAR BASE DE DATOS",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+
     }
     private void setDayNight(boolean isDarkMode) {
         if (isDarkMode) {
