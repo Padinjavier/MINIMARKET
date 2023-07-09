@@ -11,7 +11,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "tienda.db";
-    private static final String TABLA_PRODUCTOS = "t_productos";
+    public static final String TABLA_PRODUCTOS = "t_productos";
 
 
     public DBHelper(@Nullable Context context) {
@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_PRODUCTOS + "(" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CODIGO INT NOT NULL," +
+                "CODIGO TEXT NOT NULL," +
                 "NOMBRE TEXT NOT NULL," +
                 "MARCA TEXT NOT NULL," +
                 "PRECIO FLOAT NOT NULL," +

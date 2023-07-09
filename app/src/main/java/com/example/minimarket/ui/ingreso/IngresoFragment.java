@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.minimarket.DB.DBPRODUCTOS;
+import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
 import com.example.minimarket.databinding.FragmentIngresoBinding;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -64,13 +66,37 @@ public class IngresoFragment extends Fragment {
         txt_nombre = view.findViewById(R.id.TXTNOMBRE);
         txt_marca = view.findViewById(R.id.TXTMARCA);
         txt_precio = view.findViewById(R.id.TXTPRECIO);
-        txt_cantidad = view.findViewById(R.id.SWINCANTIDAD);
+        txt_cantidad = view.findViewById(R.id.TXTCANTIDAD);
         txt_fecha = view.findViewById(R.id.TXTFECHA);
         guardar = view.findViewById(R.id.GUARDAR);
         buscar = view.findViewById(R.id.BUSCAR);
 
         //este es el spinner
-        tipo_unidad = view.findViewById(R.id.TIPO_UNIDAD);
+        tipo_unidad = view.findViewById(R.id.TIPOUNIDAD);
+
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String tcodigo = txt_codigo.getText().toString();
+                String tnombre = txt_nombre.getText().toString();
+                String tmarca = txt_marca.getText().toString();
+                double tprecio = Double.parseDouble(txt_precio.getText().toString());
+                double tcantidad = Double.parseDouble(txt_cantidad.getText().toString());
+                String tfecha = txt_fecha.getText().toString();
+
+                DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
+                long ID = dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, tfecha);
+
+                if (ID > 0) {
+                    Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                    limpiaredittext();
+                } else {
+                    Toast.makeText(getContext(), "EROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //codigo barra
         btnScan.setOnClickListener(new View.OnClickListener() {
@@ -204,5 +230,14 @@ public class IngresoFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void limpiaredittext() {
+        txt_codigo.setText("");
+        txt_nombre.setText("");
+        txt_marca.setText("");
+        txt_precio.setText("");
+        txt_cantidad.setText("");
+        txt_fecha.setText("");
     }
 }

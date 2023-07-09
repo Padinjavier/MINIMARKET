@@ -1,6 +1,7 @@
 package com.example.minimarket;
 
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
     //creacion de variables objeto
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch swDarkMode;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private static final String PREFS_NAME = "MyPrefs";
     private static final String THEME_KEY = "Theme";
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
 
-    private Button crear_db;
+    Button crear_db;
 
 
     @Override
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // asignamos las variables de entorno
         MainActivity ma = MainActivity.this;
-        swDarkMode = (Switch) findViewById(R.id.switch4);
+        swDarkMode = findViewById(R.id.switch4);
         sp = ma.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         editor = sp.edit();
@@ -102,16 +104,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setDayNight(boolean isDarkMode) {
         if (isDarkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            swDarkMode.setText("MODO");
-            swDarkMode.setThumbDrawable(getResources().getDrawable(R.drawable.icons8_luna));
+            swDarkMode.setThumbDrawable(getResources().getDrawable(R.drawable.icons8_luna, getTheme()));
 
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            swDarkMode.setText("MODO");
-            swDarkMode.setThumbDrawable(getResources().getDrawable(R.drawable.icons8_sol));
+            swDarkMode.setThumbDrawable(getResources().getDrawable(R.drawable.icons8_sol, getTheme()));
         }
     }
 

@@ -18,4 +18,5 @@
     <color name="I_busqueda">#C2EABD</color>
     <color name="I_txt_secundario">#333333</color>
     <color name="I_txt_hint">#1B495E</color>
+    <color name="calendario">#FFFFFF</color>
 </resources>
