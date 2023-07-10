@@ -59,8 +59,11 @@ public class DBPRODUCTOS extends DBHelper {
                 producto.setId(cursorPRODUCTOS.getInt(0));
                 producto.setCodigo(cursorPRODUCTOS.getString(1));
                 producto.setNombre(cursorPRODUCTOS.getString(2));
-                producto.setPrecio(cursorPRODUCTOS.getFloat(3));
-                producto.setCantidad(cursorPRODUCTOS.getFloat(4));
+                producto.setMarca(cursorPRODUCTOS.getString(3));
+                producto.setPrecio(cursorPRODUCTOS.getFloat(4));
+                producto.setCantidad(cursorPRODUCTOS.getFloat(5));
+                producto.setFecha(cursorPRODUCTOS.getString(6));
+
 
                 listaPRODUCTOS.add(producto);
             } while (cursorPRODUCTOS.moveToNext());

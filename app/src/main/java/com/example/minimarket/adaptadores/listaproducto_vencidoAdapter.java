@@ -26,24 +26,29 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
     public listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_productosvencidos, null, false);
 
-        return new listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder(view);
+        return new PRODUCTOvencidoviewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder holder, int position) {
-
+        holder.viewNombre_V.setText("NOMBRE: "+listaPRODUCTOS_V.get(position).getNombre());
+        holder.viewFecha_V.setText("FECHA: "+listaPRODUCTOS_V.get(position).getFecha());
+        holder.viewCantidad_V.setText("CANTIDAD: "+String.valueOf((float) listaPRODUCTOS_V.get(position).getCantidad()));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listaPRODUCTOS_V.size();
     }
 
     public class PRODUCTOvencidoviewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewCantidad;
+        TextView viewNombre_V, viewCantidad_V,viewFecha_V;
         public PRODUCTOvencidoviewHolder(@NonNull View itemView) {
             super(itemView);
+            viewNombre_V = itemView.findViewById(R.id.viewnombre_v);
+            viewFecha_V = itemView.findViewById(R.id.viewfecha_v);
+            viewCantidad_V = itemView.findViewById(R.id.viewcantidad_v);
 
         }
     }

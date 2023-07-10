@@ -1,13 +1,9 @@
 package com.example.minimarket.ui.home;
 
-import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
-import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
+import com.example.minimarket.adaptadores.listaproducto_vencidoAdapter;
 import com.example.minimarket.adaptadores.listaproductos_generalAdapter;
 import com.example.minimarket.databinding.FragmentHomeBinding;
 import com.example.minimarket.entidades.PRODUCTOS;
@@ -29,9 +25,9 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
 
-    RecyclerView listaPRODUCTOS,viewproducto_vencido;
+    RecyclerView listaPRODUCTOS,listaproducto_vencido;
     ArrayList<PRODUCTOS> listaArrayPRODUCTOS;
-//    ArrayList<PRODUCTOS> viewproducto_vencido;
+    ArrayList<PRODUCTOS> listaArrayPRODUCTO_VENCIDO;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,22 +50,20 @@ public class HomeFragment extends Fragment {
         DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
 
         listaArrayPRODUCTOS = new ArrayList<>();
-        listaproductos_generalAdapter adapter = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
+        listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
+
+        listaPRODUCTOS.setAdapter(adapterG);
 
 
-        listaPRODUCTOS.setAdapter(adapter);
+
+        listaproducto_vencido=view.findViewById(R.id.viewPRODUCTOVENCIDO);
+        listaproducto_vencido.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
+        listaArrayPRODUCTO_VENCIDO = new ArrayList<>();
+        listaproducto_vencidoAdapter adapterV = new listaproducto_vencidoAdapter(dbproductos.mostrarPRODUTOS());
 
-//        viewproducto_vencido=view.findViewById(R.id.viewPRODUCTOVENCIDO);
-//        viewproducto_vencido.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//
-//        viewproducto_vencido = new ArrayList<>();
-//        listaproductos_generalAdapter adapter = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
-//
-//
-//        listaPRODUCTOS.setAdapter(adapter);
+        listaproducto_vencido.setAdapter(adapterV);
     }
 
     @Override
