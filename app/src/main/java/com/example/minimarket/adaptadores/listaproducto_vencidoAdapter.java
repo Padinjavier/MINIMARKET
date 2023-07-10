@@ -43,6 +43,8 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
         holder.viewNombre_V.setText("NOMBRE: "+listaPRODUCTOS_V.get(position).getNombre());
         holder.viewFecha_V.setText("FECHA: "+listaPRODUCTOS_V.get(position).getFecha());
         holder.viewCantidad_V.setText("CANTIDAD: "+String.valueOf((float) listaPRODUCTOS_V.get(position).getCantidad()));
+        holder.viewTipoUnidad_v.setText(" "+listaPRODUCTOS_V.get(position).getTipounidad());
+
     }
 
     @Override
@@ -52,12 +54,14 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
 
     public class PRODUCTOvencidoviewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre_V, viewCantidad_V,viewFecha_V;
+        TextView viewNombre_V, viewCantidad_V,viewFecha_V,viewTipoUnidad_v;
         public PRODUCTOvencidoviewHolder(@NonNull View itemView) {
             super(itemView);
             viewNombre_V = itemView.findViewById(R.id.viewnombre_v);
             viewFecha_V = itemView.findViewById(R.id.viewfecha_v);
             viewCantidad_V = itemView.findViewById(R.id.viewcantidad_v);
+            viewTipoUnidad_v=itemView.findViewById(R.id.viewtipounidad_v);
+
 
         }
     }
