@@ -25,7 +25,7 @@ public class DBPRODUCTOS extends DBHelper {
         this.context = context;
     }
 
-    public long insertarPRODUCTOS(String codigo, String nombre, String marca, double precio, double cantidad, String fecha) {
+    public long insertarPRODUCTOS(String codigo, String nombre, String marca, double precio, double cantidad,String tipounidad, String fecha) {
         long ID = 0;
         try {
 
@@ -38,6 +38,7 @@ public class DBPRODUCTOS extends DBHelper {
             values.put("MARCA", marca);
             values.put("PRECIO", precio);
             values.put("CANTIDAD", cantidad);
+            values.put("TIPOUNIDAD", tipounidad);
             values.put("FECHA", fecha);
             ID = db.insert(TABLA_PRODUCTOS, null, values);
         } catch (Exception ex) {
@@ -63,7 +64,8 @@ public class DBPRODUCTOS extends DBHelper {
                 producto.setMarca(cursorPRODUCTOS.getString(3));
                 producto.setPrecio(cursorPRODUCTOS.getFloat(4));
                 producto.setCantidad(cursorPRODUCTOS.getFloat(5));
-                producto.setFecha(cursorPRODUCTOS.getString(6));
+                producto.setTipounidad(cursorPRODUCTOS.getString(6));
+                producto.setFecha(cursorPRODUCTOS.getString(7));
                 listaPRODUCTOS.add(producto);
             } while (cursorPRODUCTOS.moveToNext());
         }
@@ -93,7 +95,8 @@ public class DBPRODUCTOS extends DBHelper {
                 producto.setMarca(cursorPRODUCTOS.getString(3));
                 producto.setPrecio(cursorPRODUCTOS.getFloat(4));
                 producto.setCantidad(cursorPRODUCTOS.getFloat(5));
-                producto.setFecha(cursorPRODUCTOS.getString(6));
+                producto.setTipounidad(cursorPRODUCTOS.getString(6));
+                producto.setFecha(cursorPRODUCTOS.getString(7));
                 listaPRODUCTOS.add(producto);
             } while (cursorPRODUCTOS.moveToNext());
         }

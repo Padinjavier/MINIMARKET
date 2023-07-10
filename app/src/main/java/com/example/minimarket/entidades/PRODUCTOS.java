@@ -8,6 +8,7 @@ public class PRODUCTOS {
     private String marca;
     private float precio;
     private float cantidad;
+    private String tipounidad;
     private String fecha;
 
     public int getId() {
@@ -58,6 +59,13 @@ public class PRODUCTOS {
         this.cantidad = cantidad;
     }
 
+    public String getTipounidad() {
+        return tipounidad;
+    }
+
+    public void setTipounidad(String tipounidad) {
+        this.tipounidad = tipounidad;
+    }
     public String getFecha() {
         return fecha;
     }
@@ -65,4 +73,6 @@ public class PRODUCTOS {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+
 }

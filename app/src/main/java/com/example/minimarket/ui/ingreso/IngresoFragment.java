@@ -79,7 +79,6 @@ public class IngresoFragment extends Fragment {
         adapter.add("Und");
         adapter.add("Kg");
         adapter.add("L");
-//        adapter.add("Otro");
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo_unidad.setAdapter(adapter);
         //finn
@@ -93,10 +92,11 @@ public class IngresoFragment extends Fragment {
                 String tmarca = txt_marca.getText().toString();
                 double tprecio = Double.parseDouble(txt_precio.getText().toString());
                 double tcantidad = Double.parseDouble(txt_cantidad.getText().toString());
+                String ttipounidad = tipo_unidad.getSelectedItem().toString();
                 String tfecha = txt_fecha.getText().toString();
 
                 DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
-                long ID = dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, tfecha);
+                long ID = dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
 
                 if (ID > 0) {
                     Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();

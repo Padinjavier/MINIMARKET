@@ -36,7 +36,7 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
         holder.viewNombre.setText("NOMBRE: "+listaPRODUCTOS_G.get(position).getNombre());
         holder.viewPrecio.setText("PRECIO: "+String.valueOf((float) listaPRODUCTOS_G.get(position).getPrecio()));
         holder.viewCantidad.setText("CANTIDAD: "+String.valueOf((float) listaPRODUCTOS_G.get(position).getCantidad()));
-
+        holder.viewTipoUnidad.setText(" "+listaPRODUCTOS_G.get(position).getTipounidad());
 
     }
 
@@ -47,7 +47,7 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
 
     public class PRODUCTOviewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewPrecio, viewCantidad;
+        TextView viewNombre, viewPrecio, viewCantidad,viewTipoUnidad;
 
         public PRODUCTOviewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +55,7 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
             viewNombre = itemView.findViewById(R.id.viewnombre);
             viewPrecio = itemView.findViewById(R.id.viewprecio);
             viewCantidad = itemView.findViewById(R.id.viewcantidad);
+            viewTipoUnidad=itemView.findViewById(R.id.viewtipounidad);
 
 
         }
