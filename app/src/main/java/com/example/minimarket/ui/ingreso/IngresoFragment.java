@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.R;
@@ -41,6 +43,7 @@ public class IngresoFragment extends Fragment {
     Spinner tipo_unidad;
 
     public boolean isFloatingWindowShown = false;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +72,8 @@ public class IngresoFragment extends Fragment {
         txt_fecha = view.findViewById(R.id.TXTFECHA);
         guardar = view.findViewById(R.id.GUARDAR);
         buscar = view.findViewById(R.id.BUSCAR);
+
+
 
         //este es el spinner
         tipo_unidad = view.findViewById(R.id.TIPOUNIDAD);
@@ -150,11 +155,6 @@ public class IngresoFragment extends Fragment {
     }
 
 
-
-
-
-
-
     //limite fecha calendario
     public void GUARDAR_F(View view) {
         if (fechaSeleccionada != 0) {
@@ -181,6 +181,7 @@ public class IngresoFragment extends Fragment {
             disableScreenElements(false); // Activar elementos de la pantalla de abajo
         }
     }
+
     //activa o desacctiva elemtos
     private void disableScreenElements(boolean disable) {
         // Desactivar o activar elementos de la pantalla de abajo según el valor de "disable"
@@ -208,6 +209,7 @@ public class IngresoFragment extends Fragment {
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
+
     //codigo barra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

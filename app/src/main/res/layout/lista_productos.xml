@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/H_nombre_producto"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="2.5"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/I_txt_secundario" />
 
         <TextView
             android:id="@+id/viewcantidad"
@@ -47,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="20 Und"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/I_txt_secundario" />
     </LinearLayout>
 </LinearLayout>
