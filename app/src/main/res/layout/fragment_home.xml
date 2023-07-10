@@ -67,7 +67,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/alerta"
+                android:text="@string/alerta_ya_vencidos"
                 android:textAlignment="center"
                 android:textColor="#FF2828"
                 android:textSize="20sp" />

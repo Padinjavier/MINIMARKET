@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/H_nombre_producto"
+                android:text="@string/lineas"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -48,16 +48,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/_2_5"
+                android:text="@string/lineas"
                 android:textAlignment="center"
-                android:textColor="@color/I_txt_secundario" />
+                android:textColor="@color/zxing_viewfinder_laser" />
 
             <TextView
                 android:id="@+id/viewcantidad_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/_20_und"
+                android:text="@string/lineas"
                 android:textAlignment="center"
                 android:textColor="@color/I_txt_secundario" />
 

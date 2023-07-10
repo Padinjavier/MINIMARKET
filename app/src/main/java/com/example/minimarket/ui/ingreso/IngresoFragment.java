@@ -16,8 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.R;
@@ -120,11 +118,13 @@ public class IngresoFragment extends Fragment {
 
 
 //calendario
-        // Obtén la fecha actual
-        Calendar calendar = Calendar.getInstance();
-        long currentTimeInMillis = calendar.getTimeInMillis();
-        // Establece la fecha mínima como la fecha actual
-        CALENDARIO.setMinDate(currentTimeInMillis);
+
+
+//        // Obtén la fecha actual
+//        Calendar calendar = Calendar.getInstance();
+//        long currentTimeInMillis = calendar.getTimeInMillis();
+//        // Establece la fecha mínima como la fecha actual
+//        CALENDARIO.setMinDate(currentTimeInMillis);
         CALENDARIO.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {

@@ -1,19 +1,25 @@
 package com.example.minimarket.adaptadores;
 
+import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.R;
 import com.example.minimarket.entidades.PRODUCTOS;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder> {
+
 
     ArrayList<PRODUCTOS> listaPRODUCTOS_V;
 
@@ -29,8 +35,11 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
         return new PRODUCTOvencidoviewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder holder, int position) {
+
+
         holder.viewNombre_V.setText("NOMBRE: "+listaPRODUCTOS_V.get(position).getNombre());
         holder.viewFecha_V.setText("FECHA: "+listaPRODUCTOS_V.get(position).getFecha());
         holder.viewCantidad_V.setText("CANTIDAD: "+String.valueOf((float) listaPRODUCTOS_V.get(position).getCantidad()));
