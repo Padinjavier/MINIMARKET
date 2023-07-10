@@ -47,6 +47,8 @@
     <string name="codigo">CODIGO</string>
     <string name="codigo_de_barra">CODIGO DE BARRA</string>
     <string name="fecha_v">FECHA V</string>
+    <string name="_2_5">2.5</string>
+    <string name="_20_und">20 Und</string>
 
 
 </resources>

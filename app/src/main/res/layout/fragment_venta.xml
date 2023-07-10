@@ -38,7 +38,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:autofillHints="fff"
-                android:background="@drawable/borde"
+                android:background="@drawable/borde_barra"
                 android:queryHint="Busqueda de producto" />
 
             <Space

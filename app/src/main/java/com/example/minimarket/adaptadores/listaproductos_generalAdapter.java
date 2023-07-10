@@ -56,6 +56,7 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
             viewPrecio = itemView.findViewById(R.id.viewprecio);
             viewCantidad = itemView.findViewById(R.id.viewcantidad);
 
+
         }
     }
 }

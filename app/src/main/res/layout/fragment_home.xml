@@ -33,31 +33,43 @@
                 android:layout_height="10dp" />
 
             <SearchView
+                android:id="@+id/busqueda_g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:autofillHints="fff"
-                android:background="@drawable/borde"
+                android:background="@drawable/borde_barra"
                 android:queryHint="Busqueda de producto" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/viewPRODUCTO_G"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/sombra"
-                android:elevation="25dp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp"
-                tools:ignore="TextSizeCheck" />
+                android:layout_height="300dp"
+                tools:ignore="NestedScrolling">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/viewPRODUCTO_G"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/sombra"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="10dp"
+                        tools:ignore="TextSizeCheck" />
+                </LinearLayout>
+            </ScrollView>
 
             <Space
                 android:layout_width="match_parent"
@@ -76,25 +88,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/sombra"
-                android:elevation="25dp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
-                android:paddingBottom="10dp" />
+                android:layout_height="300dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/viewPRODUCTOVENCIDO"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/sombra"
+                        android:elevation="25dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="10dp" />
+                </LinearLayout>
+            </ScrollView>
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
                 android:layout_height="206dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/fondorojo" />
+                app:lottie_rawRes="@raw/fondorojo"
+                tools:ignore="ImageContrastCheck" />
         </LinearLayout>
     </ScrollView>
 

@@ -29,8 +29,9 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
 
-    RecyclerView listaPRODUCTOS;
+    RecyclerView listaPRODUCTOS,viewproducto_vencido;
     ArrayList<PRODUCTOS> listaArrayPRODUCTOS;
+//    ArrayList<PRODUCTOS> viewproducto_vencido;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +59,17 @@ public class HomeFragment extends Fragment {
 
         listaPRODUCTOS.setAdapter(adapter);
 
+
+
+//        viewproducto_vencido=view.findViewById(R.id.viewPRODUCTOVENCIDO);
+//        viewproducto_vencido.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//
+//        viewproducto_vencido = new ArrayList<>();
+//        listaproductos_generalAdapter adapter = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
+//
+//
+//        listaPRODUCTOS.setAdapter(adapter);
     }
 
     @Override
