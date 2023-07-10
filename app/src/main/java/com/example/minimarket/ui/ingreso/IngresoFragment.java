@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
-import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
 import com.example.minimarket.databinding.FragmentIngresoBinding;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -41,7 +40,7 @@ public class IngresoFragment extends Fragment {
 
     Spinner tipo_unidad;
 
-    private boolean isFloatingWindowShown = false;
+    public boolean isFloatingWindowShown = false;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,7 +72,14 @@ public class IngresoFragment extends Fragment {
 
         //este es el spinner
         tipo_unidad = view.findViewById(R.id.TIPOUNIDAD);
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item);
+        adapter.add("Und");
+        adapter.add("Kg");
+        adapter.add("L");
+//        adapter.add("Otro");
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipo_unidad.setAdapter(adapter);
+        //finn
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,18 +147,15 @@ public class IngresoFragment extends Fragment {
         //finn
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item);
-        adapter.add("Und");
-        adapter.add("Kg");
-        adapter.add("L");
-//        adapter.add("Otro");
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipo_unidad.setAdapter(adapter);
-
-
     }
 
-    //calendario
+
+
+
+
+
+
+    //limite fecha calendario
     public void GUARDAR_F(View view) {
         if (fechaSeleccionada != 0) {
             // Convierte la fecha almacenada a un formato legible
@@ -166,26 +169,22 @@ public class IngresoFragment extends Fragment {
         }
     }
 
+    //activa o desacctiva elemtos
     public void ABRIR_C(View view) {
         if (VIEWCALENDARIO.getVisibility() == View.GONE) {
             VIEWCALENDARIO.setVisibility(View.VISIBLE);
             isFloatingWindowShown = true;
             disableScreenElements(true); // Desactivar elementos de la pantalla de abajo
-
         } else {
             VIEWCALENDARIO.setVisibility(View.GONE);
             isFloatingWindowShown = false;
             disableScreenElements(false); // Activar elementos de la pantalla de abajo
-
         }
     }
-
-    //finn
-
+    //activa o desacctiva elemtos
     private void disableScreenElements(boolean disable) {
         // Desactivar o activar elementos de la pantalla de abajo según el valor de "disable"
         btnScan.setEnabled(!disable);
-
 
         txt_codigo.setEnabled(!disable);
         txt_nombre.setEnabled(!disable);
@@ -209,7 +208,7 @@ public class IngresoFragment extends Fragment {
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
-
+    //codigo barra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -224,15 +223,9 @@ public class IngresoFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-    //finn
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    private void limpiaredittext() {
+    //limpiar_todo
+    public void limpiaredittext() {
         txt_codigo.setText("");
         txt_nombre.setText("");
         txt_marca.setText("");
@@ -240,4 +233,12 @@ public class IngresoFragment extends Fragment {
         txt_cantidad.setText("");
         txt_fecha.setText("");
     }
+
+    //por defecto
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

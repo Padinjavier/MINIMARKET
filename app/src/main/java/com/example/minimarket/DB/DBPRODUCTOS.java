@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.example.minimarket.ui.ingreso.IngresoFragment;
-
 public class DBPRODUCTOS extends DBHelper {
 
 Context context;
