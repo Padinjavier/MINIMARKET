@@ -74,7 +74,7 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
                 public void onClick(View view) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                    builder.setMessage("ELIMINE ESTE PRODUCTO VENCIDO")
+                    builder.setMessage("ELIMINE ESTE PRODUCTO, ESTÁ VENCIDO")
                             .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
