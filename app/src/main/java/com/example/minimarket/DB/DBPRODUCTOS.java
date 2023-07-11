@@ -48,13 +48,19 @@ public class DBPRODUCTOS extends DBHelper {
     }
 
     //traer datos para tabla vista general
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<PRODUCTOS> mostrarPRODUTOS() {
+
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaFormateada = fechaActual.format(formatoFecha);
+
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ArrayList<PRODUCTOS> listaPRODUCTOS = new ArrayList<>();
         PRODUCTOS producto = null;
         Cursor cursorPRODUCTOS = null;
-        cursorPRODUCTOS = db.rawQuery("SELECT * FROM " + TABLA_PRODUCTOS, null);
+        cursorPRODUCTOS = db.rawQuery("SELECT * FROM " + TABLA_PRODUCTOS + " WHERE FECHA >= '" + fechaFormateada + "'", null);
         if (cursorPRODUCTOS.moveToFirst()) {
             do {
                 producto = new PRODUCTOS();
@@ -102,6 +108,27 @@ public class DBPRODUCTOS extends DBHelper {
         }
         cursorPRODUCTOS.close();
         return listaPRODUCTOS;
+    }
+
+
+    public boolean eliminarPRODUCTO(int id) {
+
+        boolean correcto = false;
+
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("DELETE FROM " + TABLA_PRODUCTOS + " WHERE id = '" + id + "'");
+            correcto = true;
+        } catch (Exception ex) {
+            ex.toString();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
     }
 
 }

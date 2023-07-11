@@ -1,7 +1,13 @@
 package com.example.minimarket.adaptadores;
 
+import static android.media.CamcorderProfile.get;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.R;
 import com.example.minimarket.entidades.PRODUCTOS;
 
@@ -39,7 +46,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
     @Override
     public void onBindViewHolder(@NonNull listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder holder, int position) {
 
-
         holder.viewNombre_V.setText("NOMBRE: "+listaPRODUCTOS_V.get(position).getNombre());
         holder.viewFecha_V.setText("FECHA: "+listaPRODUCTOS_V.get(position).getFecha());
         holder.viewCantidad_V.setText("CANTIDAD: "+String.valueOf((float) listaPRODUCTOS_V.get(position).getCantidad()));
@@ -54,6 +60,9 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
 
     public class PRODUCTOvencidoviewHolder extends RecyclerView.ViewHolder {
 
+        private int productoId;
+
+
         TextView viewNombre_V, viewCantidad_V,viewFecha_V,viewTipoUnidad_v;
         public PRODUCTOvencidoviewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +72,33 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
             viewTipoUnidad_v=itemView.findViewById(R.id.viewtipounidad_v);
 
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onClick(View view) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    builder.setMessage("ELIMINE ESTE PRODUCTO VENCIDO")
+                            .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    Toast.makeText(view.getContext(), "ID del producto: " + listaPRODUCTOS_V.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
+                                    DBPRODUCTOS dbproductos= new DBPRODUCTOS(itemView.getContext());
+                                    dbproductos.eliminarPRODUCTO(listaPRODUCTOS_V.get(getAdapterPosition()).getId());
+
+                                    listaPRODUCTOS_V.remove(getAdapterPosition()); // Elimina el producto de la lista
+                                    notifyItemRemoved(getAdapterPosition()); // Notifica al adaptador que se ha eliminado un elemento en esa posición
+                                }
+                            })
+                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            }).show();
+                }
+            });
         }
     }
 }
