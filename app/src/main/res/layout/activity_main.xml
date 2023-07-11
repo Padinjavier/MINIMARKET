@@ -46,14 +46,15 @@
                         android:id="@+id/ELIMINARDB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BORRAR BASE DE DATOS"
+                        android:text="@string/Delete_DB"
                         android:visibility="gone" />
 
                     <Button
                         android:id="@+id/CREARDB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CREAR BASE DE DATOS" />
+                        android:text="@string/Create_DB"
+                        android:textColor="#795548" />
                 </LinearLayout>
 
                 <Switch

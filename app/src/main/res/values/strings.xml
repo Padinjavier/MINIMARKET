@@ -50,6 +50,8 @@
     <string name="fecha_v">FECHA V</string>
     <string name="_2_5">2.5</string>
     <string name="_20_und">20 Und</string>
+    <string name="Delete_DB">BORRAR BASE DE DATOS</string>
+    <string name="Create_DB">CREAR BASE DE DATOS</string>
 
 
 </resources>
