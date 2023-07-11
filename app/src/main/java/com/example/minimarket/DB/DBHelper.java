@@ -41,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //                "PRECIO FLOAT NOT NULL," +
 //                "CANTIDAD FLOAT NOT NULL," +
 //                "TOTALPAGO FLOAT NOT NULL)");
+
     }
 
     @Override
