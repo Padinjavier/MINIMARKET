@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/I_fondo"
+    android:background="@color/fondo"
     android:paddingTop="10dp"
     tools:context=".ui.ingreso.IngresoFragment">
 
@@ -27,7 +27,7 @@
                 android:paddingTop="20dp"
                 android:text="@string/ingreso_de_productos"
                 android:textAlignment="center"
-                android:textColor="@color/I_txt_principal"
+                android:textColor="@color/txt_general"
                 android:textSize="20sp"
                 tools:ignore="TextContrastCheck" />
 
@@ -242,11 +242,11 @@
                     android:layout_width="220dp"
                     android:layout_height="50dp"
                     android:ems="10"
+                    android:focusable="false"
                     android:fontFamily="@font/benchnine"
                     android:hint="FECHA VENCIMIENTO"
                     android:inputType="date"
-                    android:textAlignment="center"
-                    android:focusable="false" />
+                    android:textAlignment="center" />
 
             </TableRow>
 
@@ -271,16 +271,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GUARDAR" />
-
-                <Space
-                    android:layout_width="50dp"
-                    android:layout_height="35dp" />
-
-                <Button
-                    android:id="@+id/BUSCAR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Buscar" />
 
             </TableRow>
 

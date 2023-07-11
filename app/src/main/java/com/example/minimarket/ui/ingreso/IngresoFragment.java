@@ -30,7 +30,7 @@ import java.util.Date;
 
 public class IngresoFragment extends Fragment {
 
-    Button btnScan, buscar, guardar, BTNGUARDAR_F;
+    Button btnScan, guardar, BTNGUARDAR_F;
     EditText txt_codigo, txt_nombre, txt_marca, txt_precio, txt_cantidad, txt_fecha;
     SearchView bar_busqueda;
     private FragmentIngresoBinding binding;
@@ -69,7 +69,6 @@ public class IngresoFragment extends Fragment {
         txt_cantidad = view.findViewById(R.id.TXTCANTIDAD);
         txt_fecha = view.findViewById(R.id.TXTFECHA);
         guardar = view.findViewById(R.id.GUARDAR);
-        buscar = view.findViewById(R.id.BUSCAR);
 
 
 
@@ -202,7 +201,6 @@ public class IngresoFragment extends Fragment {
         txt_precio.setEnabled(!disable);
         txt_cantidad.setEnabled(!disable);
         txt_fecha.setEnabled(!disable);
-        buscar.setEnabled(!disable);
         guardar.setEnabled(!disable);
         // Otros elementos que deseas desactivar/activar...
     }
