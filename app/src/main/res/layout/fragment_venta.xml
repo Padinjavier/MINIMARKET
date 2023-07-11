@@ -86,7 +86,7 @@
                     android:textColor="@color/txt_general" />
 
                 <EditText
-                    android:id="@+id/iewmarca_venta"
+                    android:id="@+id/viewmarca_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -180,7 +180,7 @@
                     android:textColor="@color/txt_general" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/txttotal_pagar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -196,15 +196,23 @@
                 android:gravity="center_horizontal">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/VENDER"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VENDER" />
             </TableRow>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewPRODUCTOS_VENDIDOS"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/sombra"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
