@@ -165,7 +165,7 @@
                         android:autofillHints="" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/viewunidadventa"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:text="@string/Tv_und"

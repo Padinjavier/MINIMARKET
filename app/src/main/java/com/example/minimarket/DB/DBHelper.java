@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NOMBRE = "tienda.db";
     public static final String TABLA_PRODUCTOS = "t_productos";
+    public static final String TABLA_VENTAS = "t_ventas";
+
 
     public DBHelper(@Nullable Context context) {
 
@@ -26,9 +28,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "NOMBRE TEXT NOT NULL," +
                 "MARCA TEXT NOT NULL," +
                 "PRECIO FLOAT NOT NULL," +
-                "CANTIDAD FLOAR NOT NULL," +
-                "TIPOUNIDAD FLOAR NOT NULL," +
+                "CANTIDAD FLOAT NOT NULL," +
+                "TIPOUNIDAD FLOAT NOT NULL," +
                 "FECHA DATE NOT NULL)");
+
+//
+//        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_VENTAS + "(" +
+//                "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                "CODIGO TEXT NOT NULL," +
+//                "NOMBRE TEXT NOT NULL," +
+//                "MARCA TEXT NOT NULL," +
+//                "PRECIO FLOAT NOT NULL," +
+//                "CANTIDAD FLOAT NOT NULL," +
+//                "TOTALPAGO FLOAT NOT NULL)");
     }
 
     @Override

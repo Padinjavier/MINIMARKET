@@ -47,6 +47,26 @@ public class DBPRODUCTOS extends DBHelper {
         return ID;
     }
 
+    public long insertarPRODUCTOVENTAS(String nombre, String marca, double precio, double cantidad,double totalpago) {
+        long ID = 0;
+        try {
+
+            DBHelper dbHelper = new DBHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("NOMBRE", nombre);
+            values.put("MARCA", marca);
+            values.put("PRECIO", precio);
+            values.put("CANTIDAD", cantidad);
+            values.put("TOTALPAGO", totalpago);
+            ID = db.insert(TABLA_PRODUCTOS, null, values);
+        } catch (Exception ex) {
+            ex.toString();
+        }
+        return ID;
+    }
+
     //traer datos para tabla vista general
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<PRODUCTOS> mostrarPRODUTOS() {
