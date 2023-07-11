@@ -32,6 +32,7 @@
                 android:layout_height="10dp" />
 
             <SearchView
+                android:id="@+id/busquedaventa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -196,10 +197,21 @@
                 android:gravity="center_horizontal">
 
                 <Button
+                    android:id="@+id/scanerventa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SCANER" />
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="35dp" />
+
+                <Button
                     android:id="@+id/VENDER"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VENDER" />
+
             </TableRow>
 
             <androidx.recyclerview.widget.RecyclerView
