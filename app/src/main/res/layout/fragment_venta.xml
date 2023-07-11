@@ -16,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -57,7 +56,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
-                    android:text="@string/nombre" />
+                    android:text="@string/nombre"
+                    android:textColor="@color/txt_general" />
 
                 <EditText
                     android:id="@+id/viewnombre_venta"
@@ -82,7 +82,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
-                    android:text="@string/marca" />
+                    android:text="@string/marca"
+                    android:textColor="@color/txt_general" />
 
                 <EditText
                     android:id="@+id/iewmarca_venta"
@@ -107,7 +108,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
-                    android:text="@string/precio" />
+                    android:text="@string/precio"
+                    android:textColor="@color/txt_general" />
 
                 <EditText
                     android:id="@+id/viewprecio_venta"
@@ -133,7 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
-                    android:text="@string/cantidad" />
+                    android:text="@string/cantidad"
+                    android:textColor="@color/txt_general" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -155,7 +158,8 @@
                         android:id="@+id/textView6"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:text="Und" />
+                        android:text="Und"
+                        android:textColor="@color/txt_general" />
                 </LinearLayout>
 
             </TableRow>
@@ -172,22 +176,24 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="30dp"
-                    android:text="TOTAL A PAGAR:" />
+                    android:text="TOTAL A PAGAR:"
+                    android:textColor="@color/txt_general" />
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/H_precio" />
+                    android:text="@string/H_precio"
+                    android:textColor="@color/txt_general" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp">
+                android:layout_marginBottom="3dp"
+                android:gravity="center_horizontal">
 
                 <Button
                     android:id="@+id/button"
@@ -198,7 +204,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
 
