@@ -83,7 +83,7 @@ public class IngresoFragment extends Fragment {
 
                 if(txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") | txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("")||txt_fecha.getText().toString().equals("")){
 
-                    Toast.makeText(getContext(), "DEBE LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
                 }else {
 
@@ -156,7 +156,7 @@ public class IngresoFragment extends Fragment {
             txt_fecha.setText(fechaFormateada);
             ABRIR_C(view);
         } else {
-            Toast.makeText(getContext(), "Seleccione una fecha", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "REGISTRE FECHA", Toast.LENGTH_SHORT).show();
         }
     }
     //activa o desacctiva elemtos
@@ -189,7 +189,7 @@ public class IngresoFragment extends Fragment {
     private void startScanActivity() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-        integrator.setPrompt("ESCANEANDO CODIGO DE BARRAS");
+        integrator.setPrompt("ESCANEANDO CÓDIGO DE BARRAS");
         integrator.setCameraId(0);
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
@@ -202,7 +202,7 @@ public class IngresoFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(getContext(), "Lectura cancelada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "La lectura ha sido cancelada.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), result.getContents(), Toast.LENGTH_SHORT).show();
                 txt_codigo.setText(result.getContents());

@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     private void authenticatePattern() {
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
         if (keyguardManager.isKeyguardSecure()) {
-            Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Desbloquea para continuar", "Ingresa tu patrón");
+            Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Desbloquear para continuar", "Ingrese su patrón");
             if (intent != null) {
                 startActivityForResult(intent, REQUEST_CODE_CONFIRM_PATTERN);
             }
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             crear_db.setVisibility(View.GONE);
             eliminar_bd.setVisibility(View.VISIBLE);
         } else {
-            Toast.makeText(MainActivity.this, "Cree la base de datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
             crear_db.setVisibility(View.VISIBLE);
             eliminar_bd.setVisibility(View.GONE);
         }
