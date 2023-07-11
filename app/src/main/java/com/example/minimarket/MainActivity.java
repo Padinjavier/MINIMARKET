@@ -36,7 +36,6 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     //creacion de variables objeto
-
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch swDarkMode;
     private SharedPreferences sp;
@@ -63,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_venta, R.id.nav_ingreso)
                 .setOpenableLayout(drawer)
@@ -137,14 +134,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_CONFIRM_PATTERN) {
             if (resultCode == RESULT_OK) {
                 // El patrón de desbloqueo fue ingresado correctamente
-                // Aquí puedes realizar las acciones que desees después de la autenticación exitosa
-                // Por ejemplo, puedes habilitar el botón que deseas
                 eliminar_bd.setEnabled(true);
                 eliminarBaseDeDatos();
 
             } else {
                 // El patrón de desbloqueo no fue ingresado correctamente
-                // Aquí puedes manejar el caso cuando la autenticación falla
             }
         }
 
@@ -186,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Cree la base de datos", Toast.LENGTH_SHORT).show();
             crear_db.setVisibility(View.VISIBLE);
             eliminar_bd.setVisibility(View.GONE);
-
-
         }
     }
 
@@ -215,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
         boolean isDarkMode = sp.getBoolean(THEME_KEY, false);
         setDayNight(isDarkMode);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

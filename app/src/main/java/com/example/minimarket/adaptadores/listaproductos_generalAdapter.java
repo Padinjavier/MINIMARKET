@@ -21,13 +21,11 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
         this.listaPRODUCTOS_G = listaPRODUCTOS_G;
     }
 
-
     @NonNull
     @Override
     public listaproductos_generalAdapter.PRODUCTOviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_productos, null, false);
-
         return new PRODUCTOviewHolder(view);
     }
 

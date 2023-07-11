@@ -27,7 +27,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder> {
 
-
     ArrayList<PRODUCTOS> listaPRODUCTOS_V;
 
     public listaproducto_vencidoAdapter(ArrayList<PRODUCTOS> listaPRODUCTOS_V) {
@@ -38,7 +37,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
     @Override
     public listaproducto_vencidoAdapter.PRODUCTOvencidoviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_productosvencidos, null, false);
-
         return new PRODUCTOvencidoviewHolder(view);
     }
 
@@ -62,7 +60,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
 
         private int productoId;
 
-
         TextView viewNombre_V, viewCantidad_V,viewFecha_V,viewTipoUnidad_v;
         public PRODUCTOvencidoviewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +67,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
             viewFecha_V = itemView.findViewById(R.id.viewfecha_v);
             viewCantidad_V = itemView.findViewById(R.id.viewcantidad_v);
             viewTipoUnidad_v=itemView.findViewById(R.id.viewtipounidad_v);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -86,7 +82,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
                                     Toast.makeText(view.getContext(), "ID del producto: " + listaPRODUCTOS_V.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
                                     DBPRODUCTOS dbproductos= new DBPRODUCTOS(itemView.getContext());
                                     dbproductos.eliminarPRODUCTO(listaPRODUCTOS_V.get(getAdapterPosition()).getId());
-
                                     listaPRODUCTOS_V.remove(getAdapterPosition()); // Elimina el producto de la lista
                                     notifyItemRemoved(getAdapterPosition()); // Notifica al adaptador que se ha eliminado un elemento en esa posición
                                 }
@@ -94,7 +89,6 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
                             .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
                                 }
                             }).show();
                 }

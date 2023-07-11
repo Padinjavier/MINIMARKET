@@ -42,8 +42,6 @@ public class IngresoFragment extends Fragment {
 
     public boolean isFloatingWindowShown = false;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         IngresoViewModel ingresoViewModel = new ViewModelProvider(this).get(IngresoViewModel.class);
 
@@ -57,7 +55,6 @@ public class IngresoFragment extends Fragment {
         btnScan = view.findViewById(R.id.btnScan);
         txt_codigo = view.findViewById(R.id.TXTCODIGO);
 
-
         BTNGUARDAR_F = view.findViewById(R.id.GUARDAR_F);
         VIEWCALENDARIO = view.findViewById(R.id.view_c);
         CALENDARIO = view.findViewById(R.id.calendarView);
@@ -69,8 +66,6 @@ public class IngresoFragment extends Fragment {
         txt_cantidad = view.findViewById(R.id.TXTCANTIDAD);
         txt_fecha = view.findViewById(R.id.TXTFECHA);
         guardar = view.findViewById(R.id.GUARDAR);
-
-
 
         //este es el spinner
         tipo_unidad = view.findViewById(R.id.TIPOUNIDAD);
@@ -85,7 +80,6 @@ public class IngresoFragment extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 if(txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") | txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("")||txt_fecha.getText().toString().equals("")){
 
@@ -110,7 +104,6 @@ public class IngresoFragment extends Fragment {
                     } else {
                         Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });
@@ -124,15 +117,7 @@ public class IngresoFragment extends Fragment {
         });
 //finn
 
-
 //calendario
-
-
-//        // Obtén la fecha actual
-//        Calendar calendar = Calendar.getInstance();
-//        long currentTimeInMillis = calendar.getTimeInMillis();
-//        // Establece la fecha mínima como la fecha actual
-//        CALENDARIO.setMinDate(currentTimeInMillis);
         CALENDARIO.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
@@ -156,9 +141,7 @@ public class IngresoFragment extends Fragment {
             }
         });
 
-
         //finn
-
 
     }
 
@@ -176,7 +159,6 @@ public class IngresoFragment extends Fragment {
             Toast.makeText(getContext(), "Seleccione una fecha", Toast.LENGTH_SHORT).show();
         }
     }
-
     //activa o desacctiva elemtos
     public void ABRIR_C(View view) {
         if (VIEWCALENDARIO.getVisibility() == View.GONE) {
@@ -189,7 +171,6 @@ public class IngresoFragment extends Fragment {
             disableScreenElements(false); // Activar elementos de la pantalla de abajo
         }
     }
-
     //activa o desacctiva elemtos
     private void disableScreenElements(boolean disable) {
         // Desactivar o activar elementos de la pantalla de abajo según el valor de "disable"
@@ -204,7 +185,6 @@ public class IngresoFragment extends Fragment {
         guardar.setEnabled(!disable);
         // Otros elementos que deseas desactivar/activar...
     }
-
     //codigo barra
     private void startScanActivity() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
@@ -216,7 +196,6 @@ public class IngresoFragment extends Fragment {
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
-
     //codigo barra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -232,7 +211,6 @@ public class IngresoFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
     //limpiar_todo
     public void limpiaredittext() {
         txt_codigo.setText("");
@@ -242,7 +220,6 @@ public class IngresoFragment extends Fragment {
         txt_cantidad.setText("");
         txt_fecha.setText("");
     }
-
     //por defecto
     @Override
     public void onDestroyView() {

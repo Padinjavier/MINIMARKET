@@ -110,7 +110,6 @@ public class DBPRODUCTOS extends DBHelper {
         return listaPRODUCTOS;
     }
 
-
     public boolean eliminarPRODUCTO(int id) {
 
         boolean correcto = false;

@@ -29,7 +29,6 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
-
     RecyclerView listaPRODUCTOS,listaproducto_vencido;
     ArrayList<PRODUCTOS> listaArrayPRODUCTOS;
     ArrayList<PRODUCTOS> listaArrayPRODUCTO_VENCIDO;
@@ -38,17 +37,14 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
 
         return root;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         listaPRODUCTOS=view.findViewById(R.id.viewPRODUCTO_G);
         listaPRODUCTOS.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -59,15 +55,11 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
         listaproducto_vencido=view.findViewById(R.id.viewPRODUCTOVENCIDO);
         listaproducto_vencido.setLayoutManager(new LinearLayoutManager(getContext()));
         listaArrayPRODUCTO_VENCIDO = new ArrayList<>();
         listaproducto_vencidoAdapter adapterV = new listaproducto_vencidoAdapter(dbproductos.mostrarPRODUTOSVENCIDOS());
         listaproducto_vencido.setAdapter(adapterV);
-
 
     }
 

@@ -8,11 +8,9 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-
     private static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NOMBRE = "tienda.db";
     public static final String TABLA_PRODUCTOS = "t_productos";
-
 
     public DBHelper(@Nullable Context context) {
 
