@@ -84,7 +84,7 @@ public class VentaFragment extends Fragment {
     private void startScanActivity() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-        integrator.setPrompt("ESCANEANDO CODIGO DE BARRAS");
+        integrator.setPrompt("ESCANEANDO CÓDIGO DE BARRAS");
         integrator.setCameraId(0);
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
@@ -97,7 +97,7 @@ public class VentaFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(getContext(), "Lectura cancelada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "La lectura ha sido cancelada.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), result.getContents(), Toast.LENGTH_SHORT).show();
                 BUQUEDAVENTA.setQuery(result.getContents(), false);
