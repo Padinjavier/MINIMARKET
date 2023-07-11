@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lineas"
+                android:text="@string/H_nombre_producto"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lineas"
+                android:text="@string/_2_5"
                 android:textAlignment="center"
                 android:textColor="@color/zxing_viewfinder_laser" />
 
@@ -63,14 +63,15 @@
                     android:id="@+id/viewcantidad_v"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lineas"
+                    android:text="@string/Tv_Cant_20"
                     android:textColor="@color/I_txt_secundario" />
 
                 <TextView
                     android:id="@+id/viewtipounidad_v"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-----" />
+                    android:text="-----"
+                    tools:text="@string/Tv_Und_kg" />
             </LinearLayout>
 
         </LinearLayout>

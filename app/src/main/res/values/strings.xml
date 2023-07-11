@@ -47,14 +47,30 @@
     <string name="reposiciones">Reposiciones</string>
     <string name="caducos">Caducos</string>
     <string name="proximamente">PROXIMAMENTE</string>
-    <string name="codigo">CODIGO</string>
-    <string name="codigo_de_barra">CODIGO DE BARRA</string>
-    <string name="fecha_v">FECHA V</string>
+    <string name="codigo">CÓDIGO:</string>
+    <string name="codigo_de_barra">CÓDIGO DE BARRA</string>
+    <string name="fecha_v">FECHA DE V:</string>
     <string name="_2_5">2.5</string>
-    <string name="_20_und">20 Und</string>
 
     <string name="Delete_DB">BORRAR BASE DE DATOS</string>
     <string name="Create_DB">CREAR BASE DE DATOS</string>
+
+    <!--Ventas-->
+    <string name="Hint_FechaV">FECHA DE VENCIMIENTO</string>
+    <string name="Btn_Scan">ESCANEAR</string>
+    <string name="Btn_Guardar">GUARDAR</string>
+    <string name="Hint_GuardarF">GUARDAR</string>
+    <string name="Titulo_ventas">VENTAS</string>
+    <string name="Tv_und">Und</string>
+    <string name="Tv_TotalPagar">TOTAL A PAGAR:</string>
+    <string name="Btn_ScanV">ESCANER</string>
+    <string name="Btn_Vender">VENDER</string>
+
+    <!--Lista Productos--><!--Lista Productos Vencidos-->
+    <string name="Tv_Und_kg">Kg</string>
+    <string name="Tv_Cant_20">20</string>
+
+
 
 
 </resources>

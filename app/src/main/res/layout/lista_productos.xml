@@ -64,7 +64,7 @@
                     android:id="@+id/viewcantidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_20_und"
+                    android:text="@string/Tv_Cant_20"
                     android:textAlignment="center"
                     android:textColor="@color/I_txt_secundario" />
 
@@ -72,7 +72,7 @@
                     android:id="@+id/viewtipounidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="@string/Tv_Und_kg" />
             </LinearLayout>
 
         </LinearLayout>

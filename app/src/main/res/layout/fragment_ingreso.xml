@@ -216,7 +216,7 @@
                     android:id="@+id/TIPOUNIDAD"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             </TableRow>
 
@@ -244,9 +244,10 @@
                     android:ems="10"
                     android:focusable="false"
                     android:fontFamily="@font/benchnine"
-                    android:hint="FECHA VENCIMIENTO"
+                    android:hint="@string/Hint_FechaV"
                     android:inputType="date"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:autofillHints="" />
 
             </TableRow>
 
@@ -260,7 +261,8 @@
                     android:id="@+id/btnScan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SCANEAR" />
+                    android:text="@string/Btn_Scan"
+                    android:textColor="#795548" />
 
                 <Space
                     android:layout_width="50dp"
@@ -270,7 +272,8 @@
                     android:id="@+id/GUARDAR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GUARDAR" />
+                    android:text="@string/Btn_Guardar"
+                    android:textColor="#795548" />
 
             </TableRow>
 
@@ -315,7 +318,7 @@
             android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:onClick="GUARDAR_F"
-            android:text="GUARDAR" />
+            android:text="@string/Hint_GuardarF" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

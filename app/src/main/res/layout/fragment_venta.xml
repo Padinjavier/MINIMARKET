@@ -22,7 +22,7 @@
                 android:id="@+id/text_Ventas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="VENTAS"
+                android:text="@string/Titulo_ventas"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp" />
@@ -56,9 +56,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="30dp"
+                    android:paddingStart="30dp"
                     android:text="@string/nombre"
-                    android:textColor="@color/txt_general" />
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/viewnombre_venta"
@@ -68,7 +69,8 @@
                     android:ems="10"
                     android:hint="@string/H_nombre_producto"
                     android:inputType="text"
-                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize"
+                    android:autofillHints="" />
             </TableRow>
 
             <TableRow
@@ -82,9 +84,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="30dp"
+                    android:paddingStart="30dp"
                     android:text="@string/marca"
-                    android:textColor="@color/txt_general" />
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/viewmarca_venta"
@@ -94,7 +97,8 @@
                     android:ems="10"
                     android:hint="@string/H_Marca"
                     android:inputType="text"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize"
+                    android:autofillHints="" />
             </TableRow>
 
             <TableRow
@@ -108,19 +112,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="30dp"
+                    android:paddingStart="30dp"
                     android:text="@string/precio"
-                    android:textColor="@color/txt_general" />
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
 
                 <EditText
                     android:id="@+id/viewprecio_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/H_precio"
                     android:inputType="text"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:textColorHint="#D32F2F"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
             </TableRow>
 
             <TableRow
@@ -135,9 +142,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="30dp"
+                    android:paddingStart="30dp"
                     android:text="@string/cantidad"
-                    android:textColor="@color/txt_general" />
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,19 +155,20 @@
 
                     <EditText
                         android:id="@+id/viewcantidad_venta"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="@string/H_cantidad"
                         android:inputType="text"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize"
+                        android:autofillHints="" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:text="Und"
+                        android:text="@string/Tv_und"
                         android:textColor="@color/txt_general" />
                 </LinearLayout>
 
@@ -176,9 +185,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="30dp"
-                    android:text="TOTAL A PAGAR:"
-                    android:textColor="@color/txt_general" />
+                    android:paddingStart="30dp"
+                    android:text="@string/Tv_TotalPagar"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
                     android:id="@+id/txttotal_pagar"
@@ -200,7 +210,8 @@
                     android:id="@+id/scanerventa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SCANER" />
+                    android:text="@string/Btn_ScanV"
+                    android:textColor="#795548" />
 
                 <Space
                     android:layout_width="50dp"
@@ -210,7 +221,8 @@
                     android:id="@+id/VENDER"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VENDER" />
+                    android:text="@string/Btn_Vender"
+                    android:textColor="#795548" />
 
             </TableRow>
 
