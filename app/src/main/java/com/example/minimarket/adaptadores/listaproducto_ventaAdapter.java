@@ -58,16 +58,6 @@ public class listaproducto_ventaAdapter extends RecyclerView.Adapter<listaproduc
 
 
 
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Context context = view.getContext();
-//                    Intent intent= new Intent(context, VentaFragment.class);
-//                    intent.putExtra("ID",listaPRODUCTOS_G.get(getAdapterPosition()).getId());
-//                    context.startActivity(intent);
-//                }
-//            });
         }
     }
 }

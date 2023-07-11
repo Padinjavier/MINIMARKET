@@ -32,16 +32,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "TIPOUNIDAD FLOAT NOT NULL," +
                 "FECHA DATE NOT NULL)");
 
-//
-//        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_VENTAS + "(" +
-//                "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-//                "CODIGO TEXT NOT NULL," +
-//                "NOMBRE TEXT NOT NULL," +
-//                "MARCA TEXT NOT NULL," +
-//                "PRECIO FLOAT NOT NULL," +
-//                "CANTIDAD FLOAT NOT NULL," +
-//                "TOTALPAGO FLOAT NOT NULL)");
-
     }
 
     @Override
