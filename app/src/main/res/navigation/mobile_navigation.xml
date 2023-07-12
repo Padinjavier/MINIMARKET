@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_venta">
+    app:startDestination="@id/nav_home">
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.minimarket.ui.home.HomeFragment"
         android:label="@string/title_ventana1"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_venta"
+            app:destination="@id/nav_venta" />
+    </fragment>
     <fragment
         android:id="@+id/nav_ingreso"
         android:name="com.example.minimarket.ui.ingreso.IngresoFragment"
@@ -18,5 +22,9 @@
         android:id="@+id/nav_venta"
         android:name="com.example.minimarket.ui.venta.VentaFragment"
         android:label="@string/title_ventana3"
-        tools:layout="@layout/fragment_venta" />
+        tools:layout="@layout/fragment_venta" >
+        <action
+            android:id="@+id/action_nav_venta_to_nav_ingreso"
+            app:destination="@id/nav_ingreso" />
+    </fragment>
 </navigation>
