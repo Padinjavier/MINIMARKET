@@ -33,7 +33,7 @@
                 android:layout_height="10dp" />
 
             <SearchView
-                android:id="@+id/busqueda_g"
+                android:id="@+id/txtbuscar_g"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -49,7 +49,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/viewPRODUCTO_G"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="270dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/sombra"
@@ -75,7 +75,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/viewPRODUCTOVENCIDO"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="250dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/sombra"
