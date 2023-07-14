@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
+import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
 import com.example.minimarket.adaptadores.listaproducto_vencidoAdapter;
 import com.example.minimarket.adaptadores.listaproducto_ventaAdapter;
@@ -43,6 +44,7 @@ public class VentaFragment extends Fragment {
     Button SCANERVENTA;
 
     SearchView BUQUEDAVENTA;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         VentaViewModel galleryViewModel =
@@ -59,6 +61,9 @@ public class VentaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
+
         listaproducto_vendidos = view.findViewById(R.id.viewPRODUCTOS_VENDIDOS);
         listaproducto_vendidos.setLayoutManager(new LinearLayoutManager(getContext()));
         DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
@@ -71,6 +76,7 @@ public class VentaFragment extends Fragment {
        BUQUEDAVENTA=view.findViewById(R.id.busquedaventa);
 
 
+
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,8 +84,9 @@ public class VentaFragment extends Fragment {
             }
         });
 
-
     }
+
+
     //codigo barra
     private void startScanActivity() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);

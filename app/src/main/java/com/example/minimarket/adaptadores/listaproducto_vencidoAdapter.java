@@ -79,7 +79,7 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
-                                    Toast.makeText(view.getContext(), "ID del producto: " + listaPRODUCTOS_V.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(view.getContext(), listaPRODUCTOS_V.get(getAdapterPosition()).getNombre()+"RETIRADO", Toast.LENGTH_SHORT).show();
                                     DBPRODUCTOS dbproductos= new DBPRODUCTOS(itemView.getContext());
                                     dbproductos.eliminarPRODUCTO(listaPRODUCTOS_V.get(getAdapterPosition()).getId());
                                     listaPRODUCTOS_V.remove(getAdapterPosition()); // Elimina el producto de la lista

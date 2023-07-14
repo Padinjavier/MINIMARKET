@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +52,10 @@ public class HomeFragment extends Fragment {
         listaPRODUCTOS.setLayoutManager(new LinearLayoutManager(getContext()));
         DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
         listaArrayPRODUCTOS = new ArrayList<>();
-        listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
+//        listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
+        NavController navController = Navigation.findNavController(requireView());
+        listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS(), navController);
+
         listaPRODUCTOS.setAdapter(adapterG);
 
 
