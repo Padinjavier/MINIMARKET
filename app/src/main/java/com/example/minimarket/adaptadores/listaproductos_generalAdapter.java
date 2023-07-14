@@ -1,5 +1,8 @@
 package com.example.minimarket.adaptadores;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.MainActivity;
@@ -63,17 +67,20 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
             viewPrecio = itemView.findViewById(R.id.viewprecio);
             viewCantidad = itemView.findViewById(R.id.viewcantidad);
             viewTipoUnidad = itemView.findViewById(R.id.viewtipounidad);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(), listaPRODUCTOS_G.get(getAdapterPosition()).getNombre() + "|", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(view.getContext(), listaPRODUCTOS_G.get(getAdapterPosition()).getNombre() + "|", Toast.LENGTH_SHORT).show();
+                    NavController navController = Navigation.findNavController(view);
 
-                    navController.navigate(R.id.nav_venta); // Navegación a la pestaña de ventas
-
-
-
+                    Bundle bundle = new Bundle();
+                    bundle.putString("productName", listaPRODUCTOS_G.get(getAdapterPosition()).getNombre());
+                    navController.navigate(R.id.nav_venta, bundle);
                 }
             });
+
+
 
 
 

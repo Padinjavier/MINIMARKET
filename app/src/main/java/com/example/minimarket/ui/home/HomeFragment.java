@@ -52,10 +52,8 @@ public class HomeFragment extends Fragment {
         listaPRODUCTOS.setLayoutManager(new LinearLayoutManager(getContext()));
         DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
         listaArrayPRODUCTOS = new ArrayList<>();
-//        listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS());
         NavController navController = Navigation.findNavController(requireView());
         listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS(), navController);
-
         listaPRODUCTOS.setAdapter(adapterG);
 
 

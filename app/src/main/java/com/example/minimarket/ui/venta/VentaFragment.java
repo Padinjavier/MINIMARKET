@@ -45,6 +45,8 @@ public class VentaFragment extends Fragment {
 
     SearchView BUQUEDAVENTA;
 
+    EditText nameproducto;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         VentaViewModel galleryViewModel =
@@ -75,7 +77,7 @@ public class VentaFragment extends Fragment {
         SCANERVENTA = view.findViewById(R.id.scanerventa);
        BUQUEDAVENTA=view.findViewById(R.id.busquedaventa);
 
-
+nameproducto=view.findViewById(R.id.viewnombre_venta);
 
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,13 @@ public class VentaFragment extends Fragment {
                 startScanActivity();
             }
         });
+
+
+        if (getArguments() != null) {
+            String productName = getArguments().getString("productName");
+
+            nameproducto.setText(productName);
+        }
 
     }
 
