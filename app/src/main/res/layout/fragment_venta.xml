@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1234567891234"
+                    android:text="1213141312100"
                     android:textColor="@color/txt_general"
                     tools:ignore="RtlSymmetry" />
             </TableRow>
@@ -140,7 +140,6 @@
                     android:ems="10"
                     android:hint="@string/H_precio"
                     android:inputType="numberDecimal"
-                    android:text="123"
                     tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
             </TableRow>
 
@@ -173,7 +172,6 @@
                         android:ems="10"
                         android:hint="@string/H_cantidad"
                         android:inputType="numberDecimal"
-                        android:text="321"
                         tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                     <TextView
