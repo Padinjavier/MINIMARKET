@@ -35,7 +35,9 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
 
     @Override
     public void onBindViewHolder(@NonNull listaproductos_generalAdapter.PRODUCTOviewHolder holder, int position) {
+        holder.viewcodigoo.setText("CODIGO: " + listaPRODUCTOS_G.get(position).getCodigo());
         holder.viewNombre.setText("NOMBRE: " + listaPRODUCTOS_G.get(position).getNombre());
+        holder.viewfechafecha.setText("FECHA: "+listaPRODUCTOS_G.get(position).getFecha());
         holder.viewPrecio.setText("PRECIO: " + String.valueOf((float) listaPRODUCTOS_G.get(position).getPrecio()));
         holder.viewCantidad.setText("CANTIDAD: " + String.valueOf((float) listaPRODUCTOS_G.get(position).getCantidad()));
         holder.viewTipoUnidad.setText(" " + listaPRODUCTOS_G.get(position).getTipounidad());
@@ -49,7 +51,7 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
 
     public class PRODUCTOviewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewPrecio, viewCantidad, viewTipoUnidad;
+        TextView viewcodigoo,viewNombre, viewPrecio, viewCantidad, viewTipoUnidad, viewfechafecha;
 
         NavController navController;
 
@@ -57,11 +59,12 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
             super(itemView);
             this.navController = navController;
 
+            viewcodigoo=itemView.findViewById(R.id.codigoo);
             viewNombre = itemView.findViewById(R.id.viewnombre);
             viewPrecio = itemView.findViewById(R.id.viewprecio);
             viewCantidad = itemView.findViewById(R.id.viewcantidad);
             viewTipoUnidad = itemView.findViewById(R.id.viewtipounidad);
-
+            viewfechafecha = itemView.findViewById(R.id.fechafecha);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

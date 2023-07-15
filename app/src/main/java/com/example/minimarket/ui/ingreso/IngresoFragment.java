@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.R;
 import com.example.minimarket.databinding.FragmentIngresoBinding;
+import com.example.minimarket.entidades.PRODUCTOS;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -39,7 +40,9 @@ public class IngresoFragment extends Fragment {
     long fechaSeleccionada;
 
     Spinner tipo_unidad;
+    PRODUCTOS productos;
 
+    boolean correcto = false;
     public boolean isFloatingWindowShown = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,18 +88,15 @@ public class IngresoFragment extends Fragment {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
-                } else
-                if (Double.parseDouble(txt_precio.getText().toString()) <= 0) {
+                } else if (Double.parseDouble(txt_precio.getText().toString()) <= 0) {
 
                     Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
 
-                } else
-                if (Double.parseDouble(txt_cantidad.getText().toString()) <= 0) {
+                } else if (Double.parseDouble(txt_cantidad.getText().toString()) <= 0) {
 
                     Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
 
-                } else
-                if (txt_codigo.getText().toString().length() < 14 || txt_codigo.getText().toString().length() > 12) {
+                } else if (txt_codigo.getText().toString().length() > 14 || txt_codigo.getText().toString().length() < 12) {
 
                     Toast.makeText(getContext(), "EL CODIGO DEBE CONTENER 13 DIGITOS", Toast.LENGTH_SHORT).show();
 
@@ -111,13 +111,20 @@ public class IngresoFragment extends Fragment {
                     String tfecha = txt_fecha.getText().toString();
 
                     DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
-                    long ID = dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
-
-                    if (ID > 0) {
-                        Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                    productos = dbproductos.buscarPRODUCTO(tcodigo, tfecha);
+                    Toast.makeText(getContext(), "---"+productos, Toast.LENGTH_SHORT).show();
+                    if (productos != null) {
+                        correcto = dbproductos.editarContacto(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
+                        if (correcto) {
+                            Toast.makeText(getContext(), "EDICION DE REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                            limpiaredittext();
+                        } else {
+                            Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
+                        Toast.makeText(getContext(), "NUEVO REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
                         limpiaredittext();
-                    } else {
-                        Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

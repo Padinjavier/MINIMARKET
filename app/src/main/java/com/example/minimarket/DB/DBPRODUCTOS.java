@@ -47,7 +47,51 @@ public class DBPRODUCTOS extends DBHelper {
         return ID;
     }
 
+public boolean editarContacto(String codigo, String nombre, String marca, double precio, double cantidad, String tipounidad, String fecha) {
+    boolean correcto = false;
+    DBHelper dbHelper = new DBHelper(context);
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+    try {
+        ContentValues values = new ContentValues();
+        values.put("NOMBRE", nombre);
+        values.put("MARCA", marca);
+        values.put("PRECIO", precio);
+        values.put("CANTIDAD", cantidad);
+        values.put("TIPOUNIDAD", tipounidad);
+
+        int rowsAffected = db.update(TABLA_PRODUCTOS, values, "CODIGO=?", new String[]{codigo});
+        correcto = rowsAffected > 0;
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        correcto = false;
+    } finally {
+        db.close();
+    }
+
+    return correcto;
+}
+
+    public PRODUCTOS buscarPRODUCTO(String codigo, String fecha) {
+
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        PRODUCTOS productos = null;
+        Cursor cursorPRODUCTOS;
+        cursorPRODUCTOS = db.rawQuery("SELECT * FROM " + TABLA_PRODUCTOS + " WHERE CODIGO = '" + codigo + "' AND FECHA = '" + fecha + "' LIMIT 1", null);
+        if (cursorPRODUCTOS.moveToFirst()) {
+            productos = new PRODUCTOS();
+            productos.setId(cursorPRODUCTOS.getInt(0));
+            productos.setNombre(cursorPRODUCTOS.getString(1));
+            productos.setMarca(cursorPRODUCTOS.getString(2));
+            productos.setPrecio(cursorPRODUCTOS.getDouble(3));
+            productos.setCantidad(cursorPRODUCTOS.getDouble(4));
+            productos.setTipounidad(cursorPRODUCTOS.getString(5));
+            productos.setFecha(cursorPRODUCTOS.getString(6));
+        }
+        cursorPRODUCTOS.close();
+        return productos;
+    }
 
     //traer datos para tabla vista general
     @RequiresApi(api = Build.VERSION_CODES.O)

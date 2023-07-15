@@ -111,7 +111,7 @@ public class VentaFragment extends Fragment {
         VENDERR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_cantidad.getText().toString().equals("0") || producto_tipounidad.getText().toString().equals("")) {
+                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("")|| producto_tipounidad.getText().toString().equals("")) {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
@@ -128,7 +128,7 @@ public class VentaFragment extends Fragment {
                     double limite = Double.parseDouble(cantidad);
                     if (cantidad2 > limite) {
                         Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
-                    } else {
+                    }else{
 
                         String Vcodigo = producto_codigo.getText().toString();
                         String Vnombre = producto_nombre.getText().toString();
