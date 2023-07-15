@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minimarket.DB.DBHelper;
@@ -45,15 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     ActivityMainBinding binding;
 
-    Button crear_db, eliminar_bd;
-
+    Button eliminar_bd;
+    TextView crear_db;
     private static final int REQUEST_CODE_CONFIRM_PATTERN = 1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -92,21 +93,7 @@ public class MainActivity extends AppCompatActivity {
         // Establecer el tema según el estado almacenado en las preferencias compartidas
         setDayNight(isDarkMode);
         eliminar_bd = findViewById(R.id.ELIMINARDB);
-        crear_db = findViewById(R.id.CREARDB);
-        crear_db.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DBHelper dbHelper = new DBHelper(MainActivity.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                if (db != null) {
-                    Toast.makeText(MainActivity.this, "BASE DE DATOS CREADA", Toast.LENGTH_SHORT).show();
-                    validarDB();
-                } else {
-                    Toast.makeText(MainActivity.this, "ERROR AL CREAR BASE DE DATOS", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
+        crear_db = findViewById(R.id.LLENARDATOS);
 
         //pedir patron para eliminar
         eliminar_bd = findViewById(R.id.ELIMINARDB);
@@ -116,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 authenticatePattern();
             }
         });
-        validarDB();
+
+        validarDBmain();
     }
 
     private void authenticatePattern() {
@@ -145,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void eliminarBaseDeDatos() {
-        boolean eliminadaa = deleteDatabase(DBHelper.DATABASE_NOMBRE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("¿DESEA ELIMINAR LA BASE DE DATOS?")
@@ -153,9 +140,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //accion si
+                        boolean eliminadaa = deleteDatabase(DBHelper.DATABASE_NOMBRE);
                         if (eliminadaa) {
                             Toast.makeText(MainActivity.this, "Base de datos eliminada", Toast.LENGTH_SHORT).show();
-                            validarDB();
+                            validarDBmain();
+                            restartApp();
                         } else {
                             Toast.makeText(MainActivity.this, "Error al eliminar la base de datos", Toast.LENGTH_SHORT).show();
                         }
@@ -169,22 +158,34 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
-
-    public void validarDB() {
+    public void validarDBmain() {
         boolean databaseExists = checkDatabaseExists();
+        boolean hasData = false;
+        DBHelper dbHelper = new DBHelper(MainActivity.this);
+        String tabla = (DBHelper.TABLA_PRODUCTOS);
         if (databaseExists) {
-            crear_db.setVisibility(View.GONE);
-            eliminar_bd.setVisibility(View.VISIBLE);
-        } else {
-            Toast.makeText(MainActivity.this, "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
-            crear_db.setVisibility(View.VISIBLE);
-            eliminar_bd.setVisibility(View.GONE);
-            restartApp();
+            // Verificar si alguna tabla tiene datos
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + tabla, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int count = cursor.getInt(0);
+                hasData = count > 0;
+                cursor.close();
+            }
+            if (hasData) {
+                // La tabla tiene datos
+                crear_db.setVisibility(View.GONE);
+                eliminar_bd.setVisibility(View.VISIBLE);
+            } else {
+                // La tabla no tiene datos
+                crear_db.setVisibility(View.VISIBLE);
+                eliminar_bd.setVisibility(View.GONE);
+                Toast.makeText(MainActivity.this, "Por favor, ingrese productos", Toast.LENGTH_SHORT).show();
+            }
         }
     }
-    // Cerrar y reiniciar la aplicación
+
     private void restartApp() {
-        // Cerrar la actividad actual
         finish();
 
         // Crear un nuevo Intent para iniciar la actividad principal

@@ -1,6 +1,8 @@
 package com.example.minimarket.ui.venta;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.minimarket.DB.DBHelper;
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.DB.DBVENTAS;
+import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
 import com.example.minimarket.adaptadores.listaproducto_ventaAdapter;
 import com.example.minimarket.databinding.FragmentVentaBinding;
@@ -41,7 +44,7 @@ public class VentaFragment extends Fragment {
     ArrayList<VENTAS> listaArrayPRODUCTOSVENDIDOS;
 
 
-    Button  VENDERR;
+    Button VENDERR;
 
 
     TextView producto_codigo, producto_nombre, producto_marca, producto_fecha, producto_tipounidad, producto_totalpagar;
@@ -146,12 +149,12 @@ public class VentaFragment extends Fragment {
 
         VENDERR.setOnClickListener(view1 -> {
             DBHelper dbHelper = new DBHelper(getContext());
-            if (!dbHelper.validarDB()) {
-                Toast.makeText(getContext(), "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
+            if (!validarDBventa()) {
+                Toast.makeText(getContext(), "Por favor, ingrese productos para vender", Toast.LENGTH_SHORT).show();
             } else {
-                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
+                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_precio.getText().toString().equals(".") || producto_cantidad.getText().toString().equals("") || producto_cantidad.getText().toString().equals(".") || producto_tipounidad.getText().toString().equals("")) {
 
-                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS CON DATOS VALIDOS", Toast.LENGTH_SHORT).show();
 
                 } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
 
@@ -200,18 +203,44 @@ public class VentaFragment extends Fragment {
 
     }
 
+    public boolean validarDBventa() {
+        boolean hasData = false;
+        boolean dbb;
+        DBHelper dbHelper = new DBHelper(getContext());
+        String tabla = (DBHelper.TABLA_PRODUCTOS);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + tabla, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int count = cursor.getInt(0);
+            hasData = count > 0;
+            cursor.close();
+        }
+        if (hasData) {
+            // La tabla tiene datos
+            dbb = true;
+        } else {
+            // La tabla no tiene datos
+            dbb = false;
+        }
+        return dbb;
+    }
+
     private void calcularResultado() {
         String strValue1 = producto_precio.getText().toString();
         String strValue2 = producto_cantidad.getText().toString();
+        if (strValue1.equals(".") || strValue2.equals(".")) {
+            Toast.makeText(getContext(), "INGRESE DATOS VALIDOS", Toast.LENGTH_SHORT).show();
 
-        if (!strValue1.isEmpty() && !strValue2.isEmpty()) {
-            double value1 = Double.parseDouble(strValue1);
-            double value2 = Double.parseDouble(strValue2);
-
-            double result = value1 * value2;
-            producto_totalpagar.setText(String.valueOf((float) result));
         } else {
-            producto_totalpagar.setText("");
+            if (!strValue1.isEmpty() && !strValue2.isEmpty()) {
+                double value1 = Double.parseDouble(strValue1);
+                double value2 = Double.parseDouble(strValue2);
+
+                double result = value1 * value2;
+                producto_totalpagar.setText(String.valueOf((float) result));
+            } else {
+                producto_totalpagar.setText("");
+            }
         }
     }
 
