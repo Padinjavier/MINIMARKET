@@ -227,17 +227,6 @@
                 android:gravity="center_horizontal">
 
                 <Button
-                    android:id="@+id/scanerventa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Btn_ScanV"
-                    android:textColor="#795548" />
-
-                <Space
-                    android:layout_width="50dp"
-                    android:layout_height="35dp" />
-
-                <Button
                     android:id="@+id/vender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

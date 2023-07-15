@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +41,7 @@ public class VentaFragment extends Fragment {
     ArrayList<VENTAS> listaArrayPRODUCTOSVENDIDOS;
 
 
-    Button SCANERVENTA, VENDERR;
+    Button  VENDERR;
 
 
     TextView producto_codigo, producto_nombre, producto_marca, producto_fecha, producto_tipounidad, producto_totalpagar;
@@ -76,7 +75,6 @@ public class VentaFragment extends Fragment {
         listaproducto_vendidos.setAdapter(adapterVendidos);
 
 
-        SCANERVENTA = view.findViewById(R.id.scanerventa);
         VENDERR = view.findViewById(R.id.vender);
 
         producto_codigo = view.findViewById(R.id.viewcodigo_venta);
@@ -87,12 +85,7 @@ public class VentaFragment extends Fragment {
         producto_tipounidad = view.findViewById(R.id.viewunidad_venta);
         producto_fecha = view.findViewById(R.id.viewfecha_venta);
         producto_totalpagar = view.findViewById(R.id.viewtotalpagar_venta);
-        SCANERVENTA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startScanActivity();
-            }
-        });
+
 
         if (getArguments() != null) {
             String codigo = getArguments().getString("codigo");
@@ -151,56 +144,53 @@ public class VentaFragment extends Fragment {
             }
         });
 
-        VENDERR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DBHelper dbHelper = new DBHelper(getContext());
-                if (!dbHelper.validarDB()) {
-                    Toast.makeText(getContext(), "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
+        VENDERR.setOnClickListener(view1 -> {
+            DBHelper dbHelper = new DBHelper(getContext());
+            if (!dbHelper.validarDB()) {
+                Toast.makeText(getContext(), "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
+            } else {
+                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
+
+                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+
+                } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                } else if (Double.parseDouble(producto_cantidad.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
-
-                        Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
-
-                    } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
-
-                        Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
-                    } else if (Double.parseDouble(producto_cantidad.getText().toString()) <= 0) {
-
-                        Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
+                    double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
+                    double limite = Double.parseDouble(cantidad);
+                    if (cantidad2 > limite) {
+                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
                     } else {
-                        double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
-                        double limite = Double.parseDouble(cantidad);
-                        if (cantidad2 > limite) {
-                            Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
+                        float cantidadresta = (float) (limite - cantidad2);
+                        String Vcodigo = producto_codigo.getText().toString();
+                        String Vnombre = producto_nombre.getText().toString();
+                        String Vmarca = producto_marca.getText().toString();
+                        double Vprecio = Double.parseDouble(producto_precio.getText().toString());
+                        double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
+                        String Vtipounidad = producto_tipounidad.getText().toString();
+                        String Vfecha = producto_fecha.getText().toString();
+                        double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
+
+
+                        DBVENTAS dbventas1 = new DBVENTAS(getContext());
+                        long ID = dbventas1.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vfecha, Vtotalpagar);
+
+                        if (ID > 0) {
+                            DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
+                            dbproductos.retirarPRODUCTO(Vcodigo, cantidadresta, Vfecha);
+                            Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+
+                            limpiaredittext();
+                            adapterVendidos.setDatos(dbventas1.mostrarPRODUTOSVENDIDOS());
+                            adapterVendidos.notifyDataSetChanged();
                         } else {
-                            float cantidadresta = (float) (limite - cantidad2);
-                            String Vcodigo = producto_codigo.getText().toString();
-                            String Vnombre = producto_nombre.getText().toString();
-                            String Vmarca = producto_marca.getText().toString();
-                            double Vprecio = Double.parseDouble(producto_precio.getText().toString());
-                            double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
-                            String Vtipounidad = producto_tipounidad.getText().toString();
-                            String Vfecha = producto_fecha.getText().toString();
-                            double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
-
-
-                            DBVENTAS dbventas = new DBVENTAS(getContext());
-                            long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vfecha, Vtotalpagar);
-
-                            if (ID > 0) {
-                                DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
-                                dbproductos.retirarPRODUCTO(Vcodigo, cantidadresta, Vfecha);
-                                Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
-
-                                limpiaredittext();
-                                adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
-                                adapterVendidos.notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

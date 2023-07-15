@@ -143,7 +143,12 @@ public class IngresoFragment extends Fragment {
             }
         });
 //finn
-//calendario
+//calendario bloquear fechas anteriores
+        // Obtén la fecha actual
+        Calendar calendar = Calendar.getInstance();
+        long currentTimeInMillis = calendar.getTimeInMillis();
+        // Establece la fecha mínima como la fecha actual
+        CALENDARIO.setMinDate(currentTimeInMillis);
         CALENDARIO.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
@@ -169,7 +174,6 @@ public class IngresoFragment extends Fragment {
         //finn
     }
 
-    //limite fecha calendario
     public void GUARDAR_F(View view) {
         if (fechaSeleccionada != 0) {
             // Convierte la fecha almacenada a un formato legible
