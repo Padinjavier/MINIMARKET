@@ -66,6 +66,7 @@ public class PRODUCTOS {
     public void setTipounidad(String tipounidad) {
         this.tipounidad = tipounidad;
     }
+
     public String getFecha() {
         return fecha;
     }
@@ -73,6 +74,4 @@ public class PRODUCTOS {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
-
 }

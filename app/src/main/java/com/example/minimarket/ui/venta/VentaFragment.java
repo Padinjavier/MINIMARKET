@@ -20,11 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.DB.DBPRODUCTOS;
-import com.example.minimarket.MainActivity;
 import com.example.minimarket.R;
-import com.example.minimarket.adaptadores.listaproducto_vencidoAdapter;
 import com.example.minimarket.adaptadores.listaproducto_ventaAdapter;
-import com.example.minimarket.adaptadores.listaproductos_generalAdapter;
 import com.example.minimarket.databinding.FragmentVentaBinding;
 import com.example.minimarket.entidades.PRODUCTOS;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -45,7 +42,8 @@ public class VentaFragment extends Fragment {
 
     SearchView BUQUEDAVENTA;
 
-    EditText nameproducto;
+    TextView producto_nombre, producto_marca, producto_tipounidad;
+    EditText producto_precio, producto_cantidad;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,8 +62,6 @@ public class VentaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-
-
         listaproducto_vendidos = view.findViewById(R.id.viewPRODUCTOS_VENDIDOS);
         listaproducto_vendidos.setLayoutManager(new LinearLayoutManager(getContext()));
         DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
@@ -75,9 +71,13 @@ public class VentaFragment extends Fragment {
 
 
         SCANERVENTA = view.findViewById(R.id.scanerventa);
-       BUQUEDAVENTA=view.findViewById(R.id.busquedaventa);
+        BUQUEDAVENTA = view.findViewById(R.id.busquedaventa);
 
-nameproducto=view.findViewById(R.id.viewnombre_venta);
+        producto_nombre = view.findViewById(R.id.viewnombre_venta);
+        producto_marca = view.findViewById(R.id.viewmarca_venta);
+        producto_precio = view.findViewById(R.id.viewprecio_venta);
+        producto_cantidad = view.findViewById(R.id.viewcantidad_venta);
+        producto_tipounidad = view.findViewById(R.id.viewunidad_venta);
 
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,15 +86,21 @@ nameproducto=view.findViewById(R.id.viewnombre_venta);
             }
         });
 
-
         if (getArguments() != null) {
-            String productName = getArguments().getString("productName");
+            String nombre = getArguments().getString("nombre");
+            String marca = getArguments().getString("marca");
+            String precio = getArguments().getString("precio");
+            String cantidad = getArguments().getString("cantidad");
+            String tipounidad = getArguments().getString("tipounidad");
 
-            nameproducto.setText(productName);
+
+            producto_nombre.setText(nombre);
+            producto_marca.setText(marca);
+            producto_precio.setText(precio);
+            producto_cantidad.setText(cantidad);
+            producto_tipounidad.setText(tipounidad);
         }
-
     }
-
 
     //codigo barra
     private void startScanActivity() {
@@ -107,6 +113,7 @@ nameproducto=view.findViewById(R.id.viewnombre_venta);
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
+
     //codigo barra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -122,6 +129,7 @@ nameproducto=view.findViewById(R.id.viewnombre_venta);
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

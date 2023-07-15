@@ -1,6 +1,5 @@
 package com.example.minimarket.DB;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,7 +24,7 @@ public class DBPRODUCTOS extends DBHelper {
         this.context = context;
     }
 
-    public long insertarPRODUCTOS(String codigo, String nombre, String marca, double precio, double cantidad,String tipounidad, String fecha) {
+    public long insertarPRODUCTOS(String codigo, String nombre, String marca, double precio, double cantidad, String tipounidad, String fecha) {
         long ID = 0;
         try {
 
@@ -47,7 +46,7 @@ public class DBPRODUCTOS extends DBHelper {
         return ID;
     }
 
-    public long insertarPRODUCTOVENTAS(String nombre, String marca, double precio, double cantidad,double totalpago) {
+    public long insertarPRODUCTOVENTAS(String nombre, String marca, double precio, double cantidad, double totalpago) {
         long ID = 0;
         try {
 
@@ -98,6 +97,7 @@ public class DBPRODUCTOS extends DBHelper {
         cursorPRODUCTOS.close();
         return listaPRODUCTOS;
     }
+
     //traer datos para tabla vista vencidos
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<PRODUCTOS> mostrarPRODUTOSVENCIDOS() {
@@ -146,7 +146,6 @@ public class DBPRODUCTOS extends DBHelper {
         } finally {
             db.close();
         }
-
         return correcto;
     }
 
@@ -161,21 +160,20 @@ public class DBPRODUCTOS extends DBHelper {
         cursorPRODUCTOS = db.rawQuery("SELECT * FROM " + TABLA_PRODUCTOS + " WHERE ID= " + id + "LIMIT 1", null);
         if (cursorPRODUCTOS.moveToFirst()) {
 
-                producto = new PRODUCTOS();
-                producto.setId(cursorPRODUCTOS.getInt(0));
-                producto.setCodigo(cursorPRODUCTOS.getString(1));
-                producto.setNombre(cursorPRODUCTOS.getString(2));
-                producto.setMarca(cursorPRODUCTOS.getString(3));
-                producto.setPrecio(cursorPRODUCTOS.getFloat(4));
-                producto.setCantidad(cursorPRODUCTOS.getFloat(5));
-                producto.setTipounidad(cursorPRODUCTOS.getString(6));
-                producto.setFecha(cursorPRODUCTOS.getString(7));
+            producto = new PRODUCTOS();
+            producto.setId(cursorPRODUCTOS.getInt(0));
+            producto.setCodigo(cursorPRODUCTOS.getString(1));
+            producto.setNombre(cursorPRODUCTOS.getString(2));
+            producto.setMarca(cursorPRODUCTOS.getString(3));
+            producto.setPrecio(cursorPRODUCTOS.getFloat(4));
+            producto.setCantidad(cursorPRODUCTOS.getFloat(5));
+            producto.setTipounidad(cursorPRODUCTOS.getString(6));
+            producto.setFecha(cursorPRODUCTOS.getString(7));
 
         }
         cursorPRODUCTOS.close();
         return producto;
     }
-
 }
 
 

@@ -59,16 +59,14 @@
                     android:textColor="@color/txt_general"
                     tools:ignore="RtlSymmetry" />
 
-                <EditText
+                <TextView
                     android:id="@+id/viewnombre_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/H_nombre_producto"
-                    android:inputType="text"
-                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize"
-                    android:autofillHints="" />
+                    android:text="@string/H_nombre_producto"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
             </TableRow>
 
             <TableRow
@@ -85,16 +83,14 @@
                     android:textColor="@color/txt_general"
                     tools:ignore="RtlSymmetry" />
 
-                <EditText
+                <TextView
                     android:id="@+id/viewmarca_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/H_Marca"
-                    android:inputType="text"
-                    tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                    android:text="@string/H_Marca"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry"/>
             </TableRow>
 
             <TableRow
@@ -119,8 +115,7 @@
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/H_precio"
-                    android:inputType="text"
-                    android:textColorHint="#D32F2F"
+                    android:inputType="numberDecimal"
                     tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
             </TableRow>
 
@@ -151,12 +146,12 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="@string/H_cantidad"
-                        android:inputType="text"
+                        android:inputType="numberDecimal"
                         tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize"
                         android:autofillHints="" />
 
                     <TextView
-                        android:id="@+id/viewunidadventa"
+                        android:id="@+id/viewunidad_venta"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:text="@string/Tv_und"

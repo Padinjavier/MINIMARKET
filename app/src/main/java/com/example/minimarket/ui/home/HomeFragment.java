@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -23,15 +22,13 @@ import com.example.minimarket.adaptadores.listaproductos_generalAdapter;
 import com.example.minimarket.databinding.FragmentHomeBinding;
 import com.example.minimarket.entidades.PRODUCTOS;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
-    RecyclerView listaPRODUCTOS,listaproducto_vencido;
+    RecyclerView listaPRODUCTOS, listaproducto_vencido;
     ArrayList<PRODUCTOS> listaArrayPRODUCTOS;
     ArrayList<PRODUCTOS> listaArrayPRODUCTO_VENCIDO;
 
@@ -44,21 +41,20 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listaPRODUCTOS=view.findViewById(R.id.viewPRODUCTO_G);
+        listaPRODUCTOS = view.findViewById(R.id.viewPRODUCTO_G);
         listaPRODUCTOS.setLayoutManager(new LinearLayoutManager(getContext()));
-        DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
+        DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
         listaArrayPRODUCTOS = new ArrayList<>();
         NavController navController = Navigation.findNavController(requireView());
         listaproductos_generalAdapter adapterG = new listaproductos_generalAdapter(dbproductos.mostrarPRODUTOS(), navController);
         listaPRODUCTOS.setAdapter(adapterG);
 
-
-
-        listaproducto_vencido=view.findViewById(R.id.viewPRODUCTOVENCIDO);
+        listaproducto_vencido = view.findViewById(R.id.viewPRODUCTOVENCIDO);
         listaproducto_vencido.setLayoutManager(new LinearLayoutManager(getContext()));
         listaArrayPRODUCTO_VENCIDO = new ArrayList<>();
         listaproducto_vencidoAdapter adapterV = new listaproducto_vencidoAdapter(dbproductos.mostrarPRODUTOSVENCIDOS());

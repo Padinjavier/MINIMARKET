@@ -13,7 +13,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLA_PRODUCTOS = "t_productos";
     public static final String TABLA_VENTAS = "t_ventas";
 
-
     public DBHelper(@Nullable Context context) {
 
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -33,7 +32,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FECHA DATE NOT NULL)");
 
     }
-
 
 
     @Override

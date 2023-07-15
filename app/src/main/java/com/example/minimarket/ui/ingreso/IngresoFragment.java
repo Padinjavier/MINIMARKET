@@ -81,11 +81,11 @@ public class IngresoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") | txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("")||txt_fecha.getText().toString().equals("")){
+                if (txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") | txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("") || txt_fecha.getText().toString().equals("")) {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
-                }else {
+                } else {
 
                     String tcodigo = txt_codigo.getText().toString();
                     String tnombre = txt_nombre.getText().toString();
@@ -116,7 +116,6 @@ public class IngresoFragment extends Fragment {
             }
         });
 //finn
-
 //calendario
         CALENDARIO.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -140,11 +139,8 @@ public class IngresoFragment extends Fragment {
                 GUARDAR_F(view);
             }
         });
-
         //finn
-
     }
-
 
     //limite fecha calendario
     public void GUARDAR_F(View view) {
@@ -159,6 +155,7 @@ public class IngresoFragment extends Fragment {
             Toast.makeText(getContext(), "REGISTRE FECHA", Toast.LENGTH_SHORT).show();
         }
     }
+
     //activa o desacctiva elemtos
     public void ABRIR_C(View view) {
         if (VIEWCALENDARIO.getVisibility() == View.GONE) {
@@ -171,6 +168,7 @@ public class IngresoFragment extends Fragment {
             disableScreenElements(false); // Activar elementos de la pantalla de abajo
         }
     }
+
     //activa o desacctiva elemtos
     private void disableScreenElements(boolean disable) {
         // Desactivar o activar elementos de la pantalla de abajo según el valor de "disable"
@@ -185,6 +183,7 @@ public class IngresoFragment extends Fragment {
         guardar.setEnabled(!disable);
         // Otros elementos que deseas desactivar/activar...
     }
+
     //codigo barra
     private void startScanActivity() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
@@ -196,6 +195,7 @@ public class IngresoFragment extends Fragment {
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
+
     //codigo barra
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -211,6 +211,7 @@ public class IngresoFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     //limpiar_todo
     public void limpiaredittext() {
         txt_codigo.setText("");
@@ -220,7 +221,7 @@ public class IngresoFragment extends Fragment {
         txt_cantidad.setText("");
         txt_fecha.setText("");
     }
-    //por defecto
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
