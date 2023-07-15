@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                         if (eliminadaa) {
                             Toast.makeText(MainActivity.this, "Base de datos eliminada", Toast.LENGTH_SHORT).show();
                             validarDB();
-//                            vistavista();
                         } else {
                             Toast.makeText(MainActivity.this, "Error al eliminar la base de datos", Toast.LENGTH_SHORT).show();
                         }
@@ -180,7 +179,22 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
             crear_db.setVisibility(View.VISIBLE);
             eliminar_bd.setVisibility(View.GONE);
+            restartApp();
         }
+    }
+    // Cerrar y reiniciar la aplicación
+    private void restartApp() {
+        // Cerrar la actividad actual
+        finish();
+
+        // Crear un nuevo Intent para iniciar la actividad principal
+        Intent intent = new Intent(this, MainActivity.class);
+
+        // Establecer flags para borrar la pila de actividades y crear una nueva tarea
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        // Iniciar la actividad principal
+        startActivity(intent);
     }
 
     private boolean checkDatabaseExists() {
