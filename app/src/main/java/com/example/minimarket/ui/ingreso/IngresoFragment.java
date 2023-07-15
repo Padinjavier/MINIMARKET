@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.minimarket.DB.DBHelper;
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.R;
 import com.example.minimarket.databinding.FragmentIngresoBinding;
@@ -83,50 +84,54 @@ public class IngresoFragment extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") || txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("") || txt_fecha.getText().toString().equals("")) {
-
-                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
-
-                } else if (Double.parseDouble(txt_precio.getText().toString()) <= 0) {
-
-                    Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
-                } else if (Double.parseDouble(txt_cantidad.getText().toString()) <= 0) {
-
-                    Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
-                } else if (txt_codigo.getText().toString().length() > 14 || txt_codigo.getText().toString().length() < 12) {
-
-                    Toast.makeText(getContext(), "EL CODIGO DEBE CONTENER 13 DIGITOS", Toast.LENGTH_SHORT).show();
-
+                DBHelper dbHelper = new DBHelper(getContext());
+                if (!dbHelper.validarDB()) {
+                    Toast.makeText(getContext(), "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
                 } else {
+                    if (txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") || txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("") || txt_fecha.getText().toString().equals("")) {
 
-                    String tcodigo = txt_codigo.getText().toString();
-                    String tnombre = txt_nombre.getText().toString();
-                    String tmarca = txt_marca.getText().toString();
-                    double tprecio = Double.parseDouble(txt_precio.getText().toString());
-                    double tcantidad = Double.parseDouble(txt_cantidad.getText().toString());
-                    String ttipounidad = tipo_unidad.getSelectedItem().toString();
-                    String tfecha = txt_fecha.getText().toString();
+                        Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
-                    DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
-                    productos = dbproductos.buscarPRODUCTO(tcodigo, tfecha);
-                    Toast.makeText(getContext(), "---"+productos, Toast.LENGTH_SHORT).show();
-                    if (productos != null) {
-                        correcto = dbproductos.editarContacto(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
-                        if (correcto) {
-                            Toast.makeText(getContext(), "EDICION DE REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
-                            limpiaredittext();
+                    } else if (Double.parseDouble(txt_precio.getText().toString()) <= 0) {
+
+                        Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                    } else if (Double.parseDouble(txt_cantidad.getText().toString()) <= 0) {
+
+                        Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                    } else if (txt_codigo.getText().toString().length() > 14 || txt_codigo.getText().toString().length() < 12) {
+
+                        Toast.makeText(getContext(), "EL CODIGO DEBE CONTENER 13 DIGITOS", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        String tcodigo = txt_codigo.getText().toString();
+                        String tnombre = txt_nombre.getText().toString();
+                        String tmarca = txt_marca.getText().toString();
+                        double tprecio = Double.parseDouble(txt_precio.getText().toString());
+                        double tcantidad = Double.parseDouble(txt_cantidad.getText().toString());
+                        String ttipounidad = tipo_unidad.getSelectedItem().toString();
+                        String tfecha = txt_fecha.getText().toString();
+
+                        DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
+                        productos = dbproductos.buscarPRODUCTO(tcodigo, tfecha);
+                        if (productos != null) {
+                            correcto = dbproductos.editarContacto(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
+                            if (correcto) {
+                                Toast.makeText(getContext(), "EDICION DE REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                                limpiaredittext();
+                            } else {
+                                Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                            dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
+                            Toast.makeText(getContext(), "NUEVO REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                            limpiaredittext();
                         }
-                    }else{
-                        dbproductos.insertarPRODUCTOS(tcodigo, tnombre, tmarca, tprecio, tcantidad, ttipounidad, tfecha);
-                        Toast.makeText(getContext(), "NUEVO REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
-                        limpiaredittext();
                     }
                 }
+
             }
         });
 

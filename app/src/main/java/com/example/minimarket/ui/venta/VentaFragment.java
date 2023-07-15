@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.minimarket.DB.DBHelper;
 import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.DB.DBVENTAS;
 import com.example.minimarket.R;
@@ -44,7 +45,7 @@ public class VentaFragment extends Fragment {
     Button SCANERVENTA, VENDERR;
 
 
-    TextView producto_codigo, producto_nombre, producto_marca,producto_fecha, producto_tipounidad, producto_totalpagar;
+    TextView producto_codigo, producto_nombre, producto_marca, producto_fecha, producto_tipounidad, producto_totalpagar;
 
 
     EditText producto_precio, producto_cantidad;
@@ -84,7 +85,7 @@ public class VentaFragment extends Fragment {
         producto_precio = view.findViewById(R.id.viewprecio_venta);
         producto_cantidad = view.findViewById(R.id.viewcantidad_venta);
         producto_tipounidad = view.findViewById(R.id.viewunidad_venta);
-        producto_fecha=view.findViewById(R.id.viewfecha_venta);
+        producto_fecha = view.findViewById(R.id.viewfecha_venta);
         producto_totalpagar = view.findViewById(R.id.viewtotalpagar_venta);
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +101,7 @@ public class VentaFragment extends Fragment {
             String precio = getArguments().getString("precio");
             cantidad = getArguments().getString("cantidad");
             String tipounidad = getArguments().getString("tipounidad");
-            String fecha=getArguments().getString("fechab");
+            String fecha = getArguments().getString("fechab");
 
 
             producto_codigo.setText(codigo);
@@ -153,55 +154,58 @@ public class VentaFragment extends Fragment {
         VENDERR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("")|| producto_tipounidad.getText().toString().equals("")) {
-
-                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
-
-                } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
-
-                    Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
-                } else if (Double.parseDouble(producto_cantidad.getText().toString()) <= 0) {
-
-                    Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
-
+                DBHelper dbHelper = new DBHelper(getContext());
+                if (!dbHelper.validarDB()) {
+                    Toast.makeText(getContext(), "Por favor, cree la base de datos", Toast.LENGTH_SHORT).show();
                 } else {
-                    double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
-                    double limite = Double.parseDouble(cantidad);
-                    if (cantidad2 > limite) {
-                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
-                    }else{
-                        float cantidadresta= (float) (limite-cantidad2);
-                        String Vcodigo = producto_codigo.getText().toString();
-                        String Vnombre = producto_nombre.getText().toString();
-                        String Vmarca = producto_marca.getText().toString();
-                        double Vprecio = Double.parseDouble(producto_precio.getText().toString());
-                        double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
-                        String Vtipounidad = producto_tipounidad.getText().toString();
-                        String Vfecha=producto_fecha.getText().toString();
-                        double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
+                    if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
 
+                        Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
-                        DBVENTAS dbventas = new DBVENTAS(getContext());
-                        long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad,Vfecha, Vtotalpagar);
+                    } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
 
-                        if (ID > 0) {
-                            DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
-                            dbproductos.retirarPRODUCTO(Vcodigo, cantidadresta,Vfecha);
-                            Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
 
-                            limpiaredittext();
-                            adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
-                            adapterVendidos.notifyDataSetChanged();
+                    } else if (Double.parseDouble(producto_cantidad.getText().toString()) <= 0) {
+
+                        Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
+                        double limite = Double.parseDouble(cantidad);
+                        if (cantidad2 > limite) {
+                            Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                            float cantidadresta = (float) (limite - cantidad2);
+                            String Vcodigo = producto_codigo.getText().toString();
+                            String Vnombre = producto_nombre.getText().toString();
+                            String Vmarca = producto_marca.getText().toString();
+                            double Vprecio = Double.parseDouble(producto_precio.getText().toString());
+                            double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
+                            String Vtipounidad = producto_tipounidad.getText().toString();
+                            String Vfecha = producto_fecha.getText().toString();
+                            double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
+
+
+                            DBVENTAS dbventas = new DBVENTAS(getContext());
+                            long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vfecha, Vtotalpagar);
+
+                            if (ID > 0) {
+                                DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
+                                dbproductos.retirarPRODUCTO(Vcodigo, cantidadresta, Vfecha);
+                                Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+
+                                limpiaredittext();
+                                adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
+                                adapterVendidos.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }
             }
         });
-
-
 
 
     }
@@ -215,7 +219,7 @@ public class VentaFragment extends Fragment {
             double value2 = Double.parseDouble(strValue2);
 
             double result = value1 * value2;
-            producto_totalpagar.setText(String.valueOf((float)result));
+            producto_totalpagar.setText(String.valueOf((float) result));
         } else {
             producto_totalpagar.setText("");
         }

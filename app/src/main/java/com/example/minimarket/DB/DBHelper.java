@@ -3,11 +3,17 @@ package com.example.minimarket.DB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class DBHelper extends SQLiteOpenHelper {
+import com.example.minimarket.MainActivity;
 
+import java.io.File;
+
+public class DBHelper extends SQLiteOpenHelper {
+    private Context context;
     private static final int DATABASE_VERSION = 14;
     public static final String DATABASE_NOMBRE = "tienda.db";
     public static final String TABLA_PRODUCTOS = "t_productos";
@@ -16,8 +22,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
 
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
+        this.context = context;
     }
-
+    public boolean validarDB() {
+        boolean databaseExists = checkDatabaseExists();
+        return databaseExists;
+    }
+    private boolean checkDatabaseExists() {
+        File databaseFile = context.getDatabasePath(DBHelper.DATABASE_NOMBRE);
+        return databaseFile.exists();
+    }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
