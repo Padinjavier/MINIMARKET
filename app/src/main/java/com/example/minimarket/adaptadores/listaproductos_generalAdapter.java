@@ -74,9 +74,10 @@ public class listaproductos_generalAdapter extends RecyclerView.Adapter<listapro
                     bundle.putString("codigo", listaPRODUCTOS_G.get(getAdapterPosition()).getCodigo());
                     bundle.putString("nombre", listaPRODUCTOS_G.get(getAdapterPosition()).getNombre());
                     bundle.putString("marca", listaPRODUCTOS_G.get(getAdapterPosition()).getMarca());
-                    bundle.putString("precio", String.valueOf(listaPRODUCTOS_G.get(getAdapterPosition()).getPrecio()));
-                    bundle.putString("cantidad", String.valueOf(listaPRODUCTOS_G.get(getAdapterPosition()).getCantidad()));
+                    bundle.putString("precio", String.valueOf((float) listaPRODUCTOS_G.get(getAdapterPosition()).getPrecio()));
+                    bundle.putString("cantidad", String.valueOf((float) listaPRODUCTOS_G.get(getAdapterPosition()).getCantidad()));
                     bundle.putString("tipounidad", listaPRODUCTOS_G.get(getAdapterPosition()).getTipounidad());
+                    bundle.putString("fechab", listaPRODUCTOS_G.get(getAdapterPosition()).getFecha());
 
                     navController.navigate(R.id.nav_venta, bundle);
                 }

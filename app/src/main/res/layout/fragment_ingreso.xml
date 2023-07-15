@@ -31,11 +31,7 @@
                 android:textSize="20sp"
                 tools:ignore="TextContrastCheck" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="28dp" />
-
-<!--            <SearchView-->
+            <!--            <SearchView-->
 <!--                android:id="@+id/BAR_BUSQUEDA"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->

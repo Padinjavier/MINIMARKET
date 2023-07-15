@@ -29,20 +29,6 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <SearchView
-                android:id="@+id/busquedaventa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:autofillHints="fff"
-                android:background="@drawable/borde_barra"
-                android:queryHint="Busqueda de producto" />
-
-            <Space
-                android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
             <TableRow
@@ -182,6 +168,30 @@
                         android:textColor="@color/txt_general" />
                 </LinearLayout>
 
+            </TableRow>
+
+            <TableRow
+                style="@style/layout_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/fecha_v"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/viewfecha_venta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="06/06/2001"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
             </TableRow>
 
             <TableRow

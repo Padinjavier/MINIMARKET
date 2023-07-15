@@ -3,6 +3,8 @@ package com.example.minimarket.ui.venta;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.minimarket.DB.DBPRODUCTOS;
 import com.example.minimarket.DB.DBVENTAS;
 import com.example.minimarket.R;
 import com.example.minimarket.adaptadores.listaproducto_ventaAdapter;
@@ -40,9 +43,10 @@ public class VentaFragment extends Fragment {
 
     Button SCANERVENTA, VENDERR;
 
-    SearchView BUQUEDAVENTA;
 
-    TextView producto_codigo, producto_nombre, producto_marca, producto_tipounidad, producto_totalpagar;
+    TextView producto_codigo, producto_nombre, producto_marca,producto_fecha, producto_tipounidad, producto_totalpagar;
+
+
     EditText producto_precio, producto_cantidad;
     String cantidad;
 
@@ -72,7 +76,6 @@ public class VentaFragment extends Fragment {
 
 
         SCANERVENTA = view.findViewById(R.id.scanerventa);
-        BUQUEDAVENTA = view.findViewById(R.id.busquedaventa);
         VENDERR = view.findViewById(R.id.vender);
 
         producto_codigo = view.findViewById(R.id.viewcodigo_venta);
@@ -81,6 +84,7 @@ public class VentaFragment extends Fragment {
         producto_precio = view.findViewById(R.id.viewprecio_venta);
         producto_cantidad = view.findViewById(R.id.viewcantidad_venta);
         producto_tipounidad = view.findViewById(R.id.viewunidad_venta);
+        producto_fecha=view.findViewById(R.id.viewfecha_venta);
         producto_totalpagar = view.findViewById(R.id.viewtotalpagar_venta);
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +100,7 @@ public class VentaFragment extends Fragment {
             String precio = getArguments().getString("precio");
             cantidad = getArguments().getString("cantidad");
             String tipounidad = getArguments().getString("tipounidad");
+            String fecha=getArguments().getString("fechab");
 
 
             producto_codigo.setText(codigo);
@@ -104,9 +109,46 @@ public class VentaFragment extends Fragment {
             producto_precio.setText(precio);
             producto_cantidad.setText(cantidad);
             producto_tipounidad.setText(tipounidad);
-            producto_totalpagar.setText(String.valueOf(Double.parseDouble(producto_precio.getText().toString()) * Double.parseDouble(producto_cantidad.getText().toString())));
+            producto_fecha.setText(fecha);
+            double totalPagar = Double.parseDouble(producto_precio.getText().toString()) * Double.parseDouble(producto_cantidad.getText().toString());
+            float totalPagarFloat = (float) totalPagar;
+            producto_totalpagar.setText(String.valueOf(totalPagarFloat));
 
         }
+
+        producto_precio.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No se necesita implementar este método
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcularResultado();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No se necesita implementar este método
+            }
+        });
+
+        producto_cantidad.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No se necesita implementar este método
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcularResultado();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No se necesita implementar este método
+            }
+        });
 
         VENDERR.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,21 +171,25 @@ public class VentaFragment extends Fragment {
                     if (cantidad2 > limite) {
                         Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
                     }else{
-
+                        float cantidadresta= (float) (limite-cantidad2);
                         String Vcodigo = producto_codigo.getText().toString();
                         String Vnombre = producto_nombre.getText().toString();
                         String Vmarca = producto_marca.getText().toString();
                         double Vprecio = Double.parseDouble(producto_precio.getText().toString());
                         double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
                         String Vtipounidad = producto_tipounidad.getText().toString();
+                        String Vfecha=producto_fecha.getText().toString();
                         double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
 
 
                         DBVENTAS dbventas = new DBVENTAS(getContext());
-                        long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vtotalpagar);
+                        long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad,Vfecha, Vtotalpagar);
 
                         if (ID > 0) {
+                            DBPRODUCTOS dbproductos=new DBPRODUCTOS(getContext());
+                            dbproductos.retirarPRODUCTO(Vcodigo, cantidadresta,Vfecha);
                             Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+
                             limpiaredittext();
                             adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
                             adapterVendidos.notifyDataSetChanged();
@@ -154,6 +200,25 @@ public class VentaFragment extends Fragment {
                 }
             }
         });
+
+
+
+
+    }
+
+    private void calcularResultado() {
+        String strValue1 = producto_precio.getText().toString();
+        String strValue2 = producto_cantidad.getText().toString();
+
+        if (!strValue1.isEmpty() && !strValue2.isEmpty()) {
+            double value1 = Double.parseDouble(strValue1);
+            double value2 = Double.parseDouble(strValue2);
+
+            double result = value1 * value2;
+            producto_totalpagar.setText(String.valueOf((float)result));
+        } else {
+            producto_totalpagar.setText("");
+        }
     }
 
     //codigo barra
@@ -177,7 +242,6 @@ public class VentaFragment extends Fragment {
                 Toast.makeText(getContext(), "La lectura ha sido cancelada.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), result.getContents(), Toast.LENGTH_SHORT).show();
-                BUQUEDAVENTA.setQuery(result.getContents(), false);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

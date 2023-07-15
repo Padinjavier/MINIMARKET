@@ -21,7 +21,7 @@ public class DBVENTAS extends DBHelper{
         this.context = context;
     }
 
-    public long insertarPRODUCTOVENTAS(String Vcodigo,String Vnombre, String Vmarca, double Vprecio, double Vcantidad,String Vtipounidad, double Vtotalpago) {
+    public long insertarPRODUCTOVENTAS(String Vcodigo,String Vnombre, String Vmarca, double Vprecio, double Vcantidad,String Vtipounidad,String Vfecha, double Vtotalpago) {
         long ID = 0;
         try {
 
@@ -35,6 +35,7 @@ public class DBVENTAS extends DBHelper{
             valuesv.put("PRECIOV", Vprecio);
             valuesv.put("CANTIDADV", Vcantidad);
             valuesv.put("TIPOUNIDADV", Vtipounidad);
+            valuesv.put("FECHAV", Vfecha);
             valuesv.put("TOTALPAGOV", Vtotalpago);
             ID = db.insert(TABLA_VENTAS, null, valuesv);
         } catch (Exception ex) {

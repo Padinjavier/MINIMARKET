@@ -30,20 +30,6 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <SearchView
-                android:id="@+id/txtbuscar_g"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:autofillHints="fff"
-                android:background="@drawable/borde_barra"
-                android:queryHint="Busqueda de producto" />
-
-            <Space
-                android:layout_width="match_parent"
                 android:layout_height="15dp" />
 
             <androidx.recyclerview.widget.RecyclerView

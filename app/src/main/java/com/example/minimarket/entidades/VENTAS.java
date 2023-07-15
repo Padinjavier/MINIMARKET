@@ -9,6 +9,7 @@ public class VENTAS {
     private double precio_venta;
     private double cantidad_venta;
     private String tipounidad_venta;
+    private double fecha_venta;
     private double totalpago_venta;
 
 
@@ -66,6 +67,14 @@ public class VENTAS {
 
     public void setTipounidad_venta(String tipounidad_venta) {
         this.tipounidad_venta = tipounidad_venta;
+    }
+
+    public double getFecha_venta() {
+        return fecha_venta;
+    }
+
+    public void setFecha_venta(double fecha_venta) {
+        this.fecha_venta = fecha_venta;
     }
 
     public double getTotalpago_venta() {

@@ -71,7 +71,26 @@ public boolean editarContacto(String codigo, String nombre, String marca, double
 
     return correcto;
 }
+    public boolean retirarPRODUCTO(String codigo, double cantidad, String fecha) {
+        boolean correcto = false;
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        try {
+            ContentValues values = new ContentValues();
+            values.put("CANTIDAD", cantidad);
+
+            int rowsAffected = db.update(TABLA_PRODUCTOS, values, "CODIGO = ? AND FECHA = ?", new String[]{codigo, fecha});
+            correcto = rowsAffected > 0;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
+    }
     public PRODUCTOS buscarPRODUCTO(String codigo, String fecha) {
 
         DBHelper dbHelper = new DBHelper(context);
