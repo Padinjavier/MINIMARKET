@@ -45,6 +45,7 @@ public class VentaFragment extends Fragment {
     TextView producto_codigo, producto_nombre, producto_marca, producto_tipounidad, producto_totalpagar;
     EditText producto_precio, producto_cantidad;
     String cantidad;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         VentaViewModel galleryViewModel =
@@ -114,11 +115,19 @@ public class VentaFragment extends Fragment {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
+                } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                } else if (Double.parseDouble(producto_cantidad.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
                 } else {
                     double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
                     double limite = Double.parseDouble(cantidad);
                     if (cantidad2 > limite) {
-                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock: "+limite, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock: " + limite, Toast.LENGTH_SHORT).show();
                     } else {
 
                         String Vcodigo = producto_codigo.getText().toString();
