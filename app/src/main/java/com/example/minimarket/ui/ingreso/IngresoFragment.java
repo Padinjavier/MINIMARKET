@@ -85,6 +85,21 @@ public class IngresoFragment extends Fragment {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
+                } else
+                if (Double.parseDouble(txt_precio.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "EL PRECIO DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                } else
+                if (Double.parseDouble(txt_cantidad.getText().toString()) <= 0) {
+
+                    Toast.makeText(getContext(), "LA CANTIDAD DEBE SER MAYOR A 0", Toast.LENGTH_SHORT).show();
+
+                } else
+                if (txt_codigo.getText().toString().length() < 14 || txt_codigo.getText().toString().length() > 12) {
+
+                    Toast.makeText(getContext(), "EL CODIGO DEBE CONTENER 13 DIGITOS", Toast.LENGTH_SHORT).show();
+
                 } else {
 
                     String tcodigo = txt_codigo.getText().toString();
