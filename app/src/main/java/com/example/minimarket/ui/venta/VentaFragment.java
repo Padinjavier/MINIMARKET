@@ -105,7 +105,6 @@ public class VentaFragment extends Fragment {
             producto_tipounidad.setText(tipounidad);
             producto_totalpagar.setText(String.valueOf(Double.parseDouble(producto_precio.getText().toString()) * Double.parseDouble(producto_cantidad.getText().toString())));
 
-
         }
 
         VENDERR.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +116,9 @@ public class VentaFragment extends Fragment {
 
                 } else {
                     double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
-                    if (cantidad2 > Double.parseDouble(cantidad)) {
-                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock", Toast.LENGTH_SHORT).show();
+                    double limite = Double.parseDouble(cantidad);
+                    if (cantidad2 > limite) {
+                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock: "+limite, Toast.LENGTH_SHORT).show();
                     } else {
 
                         String Vcodigo = producto_codigo.getText().toString();
