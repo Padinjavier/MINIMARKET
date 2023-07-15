@@ -27,7 +27,6 @@ public class DBVENTAS extends DBHelper{
 
             DBHelper dbHelper = new DBHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-            Toast.makeText(context, Vcodigo+"|" +Vnombre+"|"+Vmarca+"|"+Vprecio+"|"+Vcantidad+"|"+Vtipounidad+"|"+Vtotalpago , Toast.LENGTH_LONG).show();
 
             ContentValues valuesv = new ContentValues();
             valuesv.put("CODIGOV", Vcodigo);

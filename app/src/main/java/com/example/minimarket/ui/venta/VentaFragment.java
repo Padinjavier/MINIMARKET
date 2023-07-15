@@ -42,9 +42,9 @@ public class VentaFragment extends Fragment {
 
     SearchView BUQUEDAVENTA;
 
-    TextView producto_nombre, producto_marca, producto_tipounidad, producto_totalpagar;
+    TextView producto_codigo, producto_nombre, producto_marca, producto_tipounidad, producto_totalpagar;
     EditText producto_precio, producto_cantidad;
-    String codigo;
+    String cantidad;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         VentaViewModel galleryViewModel =
@@ -74,6 +74,7 @@ public class VentaFragment extends Fragment {
         BUQUEDAVENTA = view.findViewById(R.id.busquedaventa);
         VENDERR = view.findViewById(R.id.vender);
 
+        producto_codigo = view.findViewById(R.id.viewcodigo_venta);
         producto_nombre = view.findViewById(R.id.viewnombre_venta);
         producto_marca = view.findViewById(R.id.viewmarca_venta);
         producto_precio = view.findViewById(R.id.viewprecio_venta);
@@ -88,14 +89,15 @@ public class VentaFragment extends Fragment {
         });
 
         if (getArguments() != null) {
-            codigo=getArguments().getString("codigo");
+            String codigo = getArguments().getString("codigo");
             String nombre = getArguments().getString("nombre");
             String marca = getArguments().getString("marca");
             String precio = getArguments().getString("precio");
-            String cantidad = getArguments().getString("cantidad");
+            cantidad = getArguments().getString("cantidad");
             String tipounidad = getArguments().getString("tipounidad");
 
 
+            producto_codigo.setText(codigo);
             producto_nombre.setText(nombre);
             producto_marca.setText(marca);
             producto_precio.setText(precio);
@@ -109,41 +111,41 @@ public class VentaFragment extends Fragment {
         VENDERR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
+                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_cantidad.getText().toString().equals("0") || producto_tipounidad.getText().toString().equals("")) {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 
                 } else {
-
-                    String Vcodigo = "123";
-                    String Vnombre = producto_nombre.getText().toString();
-                    String Vmarca = producto_marca.getText().toString();
-                    double Vprecio = Double.parseDouble(producto_precio.getText().toString());
-                    double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
-                    String Vtipounidad = producto_tipounidad.getText().toString();
-                    double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
-
-
-                    DBVENTAS dbventas = new DBVENTAS(getContext());
-                    long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo,Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vtotalpagar);
-
-                    if (ID > 0) {
-                        Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
-                        limpiaredittext();
-//                        // Actualizar la lista de datos en el adaptador del RecyclerView
-//                        adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
-//
-//                        // Notificar al RecyclerView que los datos han cambiado
-//                        adapterVendidos.notifyDataSetChanged();
+                    double cantidad2 = Double.parseDouble(producto_cantidad.getText().toString());
+                    if (cantidad2 > Double.parseDouble(cantidad)) {
+                        Toast.makeText(getContext(), "La cantidad excede el límite de Stock", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+
+                        String Vcodigo = producto_codigo.getText().toString();
+                        String Vnombre = producto_nombre.getText().toString();
+                        String Vmarca = producto_marca.getText().toString();
+                        double Vprecio = Double.parseDouble(producto_precio.getText().toString());
+                        double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
+                        String Vtipounidad = producto_tipounidad.getText().toString();
+                        double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
+
+
+                        DBVENTAS dbventas = new DBVENTAS(getContext());
+                        long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo, Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vtotalpagar);
+
+                        if (ID > 0) {
+                            Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                            limpiaredittext();
+                            adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
+                            adapterVendidos.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
-
-    });
-
-}
+        });
+    }
 
     //codigo barra
     private void startScanActivity() {
@@ -172,14 +174,12 @@ public class VentaFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     public void limpiaredittext() {
-        producto_nombre.setText("");
-        producto_marca.setText("");
         producto_precio.setText("");
         producto_cantidad.setText("");
-        producto_tipounidad.setText("");
-        producto_totalpagar.setText("");
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

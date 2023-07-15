@@ -51,6 +51,30 @@
                 style="@style/layout_margin">
 
                 <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/codigo"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry"/>
+
+                <TextView
+                    android:id="@+id/viewcodigo_venta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1234"
+                    android:textColor="@color/txt_general"
+                    tools:ignore="RtlSymmetry" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/layout_margin">
+
+                <TextView
                     android:id="@+id/txtnombre_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

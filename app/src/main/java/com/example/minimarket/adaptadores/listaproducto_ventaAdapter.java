@@ -20,7 +20,9 @@ public class listaproducto_ventaAdapter extends RecyclerView.Adapter<listaproduc
     public listaproducto_ventaAdapter(ArrayList<VENTAS> listaPRODUCTOS_VENDIDOS) {
         this.listaPRODUCTOS_VENDIDOS = listaPRODUCTOS_VENDIDOS;
     }
-
+    public void setDatos(ArrayList<VENTAS> listaPRODUCTOS_VENDIDOS) {
+        this.listaPRODUCTOS_VENDIDOS = listaPRODUCTOS_VENDIDOS;
+    }
     @NonNull
     @Override
     public listaproducto_ventaAdapter.PRODUCTOVENDIDOviewGolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
