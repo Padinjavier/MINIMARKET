@@ -81,7 +81,7 @@ public class IngresoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") | txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("") || txt_fecha.getText().toString().equals("")) {
+                if (txt_codigo.getText().toString().equals("") || txt_nombre.getText().toString().equals("") || txt_marca.getText().toString().equals("") || txt_precio.getText().toString().equals("") || txt_cantidad.getText().toString().equals("") || txt_fecha.getText().toString().equals("")) {
 
                     Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
 

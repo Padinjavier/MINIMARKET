@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 12;
     public static final String DATABASE_NOMBRE = "tienda.db";
     public static final String TABLA_PRODUCTOS = "t_productos";
     public static final String TABLA_VENTAS = "t_ventas";
@@ -26,17 +26,26 @@ public class DBHelper extends SQLiteOpenHelper {
                 "CODIGO TEXT NOT NULL," +
                 "NOMBRE TEXT NOT NULL," +
                 "MARCA TEXT NOT NULL," +
-                "PRECIO FLOAT NOT NULL," +
-                "CANTIDAD FLOAT NOT NULL," +
-                "TIPOUNIDAD FLOAT NOT NULL," +
+                "PRECIO DOUBLE NOT NULL," +
+                "CANTIDAD DOUBLE NOT NULL," +
+                "TIPOUNIDAD TEXT NOT NULL," +
                 "FECHA DATE NOT NULL)");
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_VENTAS + "(" +
+                "IDV INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CODIGOV TEXT NOT NULL," +
+                "NOMBREV TEXT NOT NULL," +
+                "MARCAV TEXT NOT NULL," +
+                "PRECIOV DOUBLE NOT NULL," +
+                "CANTIDADV DOUBLE NOT NULL," +
+                "TIPOUNIDADV TEXT NOT NULL," +
+                "TOTALPAGOV DOUBLE NOT NULL)");
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE " + TABLA_PRODUCTOS);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLA_VENTAS);
         onCreate(sqLiteDatabase);
     }
 }

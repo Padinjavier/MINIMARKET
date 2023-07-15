@@ -19,11 +19,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.minimarket.DB.DBPRODUCTOS;
+import com.example.minimarket.DB.DBVENTAS;
 import com.example.minimarket.R;
 import com.example.minimarket.adaptadores.listaproducto_ventaAdapter;
 import com.example.minimarket.databinding.FragmentVentaBinding;
-import com.example.minimarket.entidades.PRODUCTOS;
+import com.example.minimarket.entidades.VENTAS;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -35,16 +35,16 @@ public class VentaFragment extends Fragment {
 
 
     RecyclerView listaproducto_vendidos;
-    ArrayList<PRODUCTOS> listaArrayPRODUCTOSVENDIDOS;
+    ArrayList<VENTAS> listaArrayPRODUCTOSVENDIDOS;
 
 
-    Button SCANERVENTA;
+    Button SCANERVENTA, VENDERR;
 
     SearchView BUQUEDAVENTA;
 
-    TextView producto_nombre, producto_marca, producto_tipounidad;
+    TextView producto_nombre, producto_marca, producto_tipounidad, producto_totalpagar;
     EditText producto_precio, producto_cantidad;
-
+    String codigo;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         VentaViewModel galleryViewModel =
@@ -64,21 +64,22 @@ public class VentaFragment extends Fragment {
 
         listaproducto_vendidos = view.findViewById(R.id.viewPRODUCTOS_VENDIDOS);
         listaproducto_vendidos.setLayoutManager(new LinearLayoutManager(getContext()));
-        DBPRODUCTOS dbproductos = new DBPRODUCTOS(getContext());
+        DBVENTAS dbventas = new DBVENTAS(getContext());
         listaArrayPRODUCTOSVENDIDOS = new ArrayList<>();
-        listaproducto_ventaAdapter adapterVendidos = new listaproducto_ventaAdapter(dbproductos.mostrarPRODUTOS());
+        listaproducto_ventaAdapter adapterVendidos = new listaproducto_ventaAdapter(dbventas.mostrarPRODUTOSVENDIDOS());
         listaproducto_vendidos.setAdapter(adapterVendidos);
 
 
         SCANERVENTA = view.findViewById(R.id.scanerventa);
         BUQUEDAVENTA = view.findViewById(R.id.busquedaventa);
+        VENDERR = view.findViewById(R.id.vender);
 
         producto_nombre = view.findViewById(R.id.viewnombre_venta);
         producto_marca = view.findViewById(R.id.viewmarca_venta);
         producto_precio = view.findViewById(R.id.viewprecio_venta);
         producto_cantidad = view.findViewById(R.id.viewcantidad_venta);
         producto_tipounidad = view.findViewById(R.id.viewunidad_venta);
-
+        producto_totalpagar = view.findViewById(R.id.viewtotalpagar_venta);
         SCANERVENTA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +88,7 @@ public class VentaFragment extends Fragment {
         });
 
         if (getArguments() != null) {
+            codigo=getArguments().getString("codigo");
             String nombre = getArguments().getString("nombre");
             String marca = getArguments().getString("marca");
             String precio = getArguments().getString("precio");
@@ -99,8 +101,49 @@ public class VentaFragment extends Fragment {
             producto_precio.setText(precio);
             producto_cantidad.setText(cantidad);
             producto_tipounidad.setText(tipounidad);
+            producto_totalpagar.setText(String.valueOf(Double.parseDouble(producto_precio.getText().toString()) * Double.parseDouble(producto_cantidad.getText().toString())));
+
+
         }
-    }
+
+        VENDERR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_cantidad.getText().toString().equals("") || producto_tipounidad.getText().toString().equals("")) {
+
+                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    String Vcodigo = "123";
+                    String Vnombre = producto_nombre.getText().toString();
+                    String Vmarca = producto_marca.getText().toString();
+                    double Vprecio = Double.parseDouble(producto_precio.getText().toString());
+                    double Vcantidad = Double.parseDouble(producto_cantidad.getText().toString());
+                    String Vtipounidad = producto_tipounidad.getText().toString();
+                    double Vtotalpagar = Double.parseDouble(producto_totalpagar.getText().toString());
+
+
+                    DBVENTAS dbventas = new DBVENTAS(getContext());
+                    long ID = dbventas.insertarPRODUCTOVENTAS(Vcodigo,Vnombre, Vmarca, Vprecio, Vcantidad, Vtipounidad, Vtotalpagar);
+
+                    if (ID > 0) {
+                        Toast.makeText(getContext(), "REGISTRO GUARDADO", Toast.LENGTH_SHORT).show();
+                        limpiaredittext();
+//                        // Actualizar la lista de datos en el adaptador del RecyclerView
+//                        adapterVendidos.setDatos(dbventas.mostrarPRODUTOSVENDIDOS());
+//
+//                        // Notificar al RecyclerView que los datos han cambiado
+//                        adapterVendidos.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getContext(), "ERROR AL GUARDAR", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+    });
+
+}
 
     //codigo barra
     private void startScanActivity() {
@@ -129,7 +172,14 @@ public class VentaFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
+    public void limpiaredittext() {
+        producto_nombre.setText("");
+        producto_marca.setText("");
+        producto_precio.setText("");
+        producto_cantidad.setText("");
+        producto_tipounidad.setText("");
+        producto_totalpagar.setText("");
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

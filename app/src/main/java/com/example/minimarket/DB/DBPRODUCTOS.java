@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.minimarket.entidades.PRODUCTOS;
+import com.example.minimarket.entidades.VENTAS;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,25 +47,7 @@ public class DBPRODUCTOS extends DBHelper {
         return ID;
     }
 
-    public long insertarPRODUCTOVENTAS(String nombre, String marca, double precio, double cantidad, double totalpago) {
-        long ID = 0;
-        try {
 
-            DBHelper dbHelper = new DBHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put("NOMBRE", nombre);
-            values.put("MARCA", marca);
-            values.put("PRECIO", precio);
-            values.put("CANTIDAD", cantidad);
-            values.put("TOTALPAGO", totalpago);
-            ID = db.insert(TABLA_PRODUCTOS, null, values);
-        } catch (Exception ex) {
-            ex.toString();
-        }
-        return ID;
-    }
 
     //traer datos para tabla vista general
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -149,31 +132,6 @@ public class DBPRODUCTOS extends DBHelper {
         return correcto;
     }
 
-
-    public PRODUCTOS verPRODUCTO(int id) {
-
-        DBHelper dbHelper = new DBHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        PRODUCTOS producto = null;
-        Cursor cursorPRODUCTOS = null;
-
-        cursorPRODUCTOS = db.rawQuery("SELECT * FROM " + TABLA_PRODUCTOS + " WHERE ID= " + id + "LIMIT 1", null);
-        if (cursorPRODUCTOS.moveToFirst()) {
-
-            producto = new PRODUCTOS();
-            producto.setId(cursorPRODUCTOS.getInt(0));
-            producto.setCodigo(cursorPRODUCTOS.getString(1));
-            producto.setNombre(cursorPRODUCTOS.getString(2));
-            producto.setMarca(cursorPRODUCTOS.getString(3));
-            producto.setPrecio(cursorPRODUCTOS.getFloat(4));
-            producto.setCantidad(cursorPRODUCTOS.getFloat(5));
-            producto.setTipounidad(cursorPRODUCTOS.getString(6));
-            producto.setFecha(cursorPRODUCTOS.getString(7));
-
-        }
-        cursorPRODUCTOS.close();
-        return producto;
-    }
 }
 
 

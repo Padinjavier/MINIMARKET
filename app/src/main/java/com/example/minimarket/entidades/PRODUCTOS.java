@@ -6,10 +6,11 @@ public class PRODUCTOS {
     private String codigo;
     private String nombre;
     private String marca;
-    private float precio;
-    private float cantidad;
+    private double precio;
+    private double cantidad;
     private String tipounidad;
     private String fecha;
+
 
     public int getId() {
         return id;
@@ -43,19 +44,19 @@ public class PRODUCTOS {
         this.marca = marca;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public float getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 

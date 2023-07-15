@@ -116,6 +116,7 @@
                     android:ems="10"
                     android:hint="@string/H_precio"
                     android:inputType="numberDecimal"
+                    android:text="123"
                     tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
             </TableRow>
 
@@ -144,11 +145,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:autofillHints=""
                         android:ems="10"
                         android:hint="@string/H_cantidad"
                         android:inputType="numberDecimal"
-                        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize"
-                        android:autofillHints="" />
+                        android:text="321"
+                        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                     <TextView
                         android:id="@+id/viewunidad_venta"
@@ -175,7 +177,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:id="@+id/txttotal_pagar"
+                    android:id="@+id/viewtotalpagar_venta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -204,7 +206,7 @@
                     android:layout_height="35dp" />
 
                 <Button
-                    android:id="@+id/VENDER"
+                    android:id="@+id/vender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Btn_Vender"

@@ -40,7 +40,7 @@ public class listaproducto_vencidoAdapter extends RecyclerView.Adapter<listaprod
 
         holder.viewNombre_V.setText("NOMBRE: " + listaPRODUCTOS_V.get(position).getNombre());
         holder.viewFecha_V.setText("FECHA: " + listaPRODUCTOS_V.get(position).getFecha());
-        holder.viewCantidad_V.setText("CANTIDAD: " + String.valueOf((float) listaPRODUCTOS_V.get(position).getCantidad()));
+        holder.viewCantidad_V.setText("CANTIDAD: " + String.valueOf(listaPRODUCTOS_V.get(position).getCantidad()));
         holder.viewTipoUnidad_v.setText(" " + listaPRODUCTOS_V.get(position).getTipounidad());
 
     }

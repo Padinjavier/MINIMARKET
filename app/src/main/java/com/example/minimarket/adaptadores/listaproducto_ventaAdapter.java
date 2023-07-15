@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarket.R;
-import com.example.minimarket.entidades.PRODUCTOS;
+import com.example.minimarket.entidades.VENTAS;
 
 import java.util.ArrayList;
 
 public class listaproducto_ventaAdapter extends RecyclerView.Adapter<listaproducto_ventaAdapter.PRODUCTOVENDIDOviewGolder> {
 
-    ArrayList<PRODUCTOS> listaPRODUCTOS_VENDIDOS;
+    ArrayList<VENTAS> listaPRODUCTOS_VENDIDOS;
 
-    public listaproducto_ventaAdapter(ArrayList<PRODUCTOS> listaPRODUCTOS_VENDIDOS) {
+    public listaproducto_ventaAdapter(ArrayList<VENTAS> listaPRODUCTOS_VENDIDOS) {
         this.listaPRODUCTOS_VENDIDOS = listaPRODUCTOS_VENDIDOS;
     }
 
@@ -30,11 +30,11 @@ public class listaproducto_ventaAdapter extends RecyclerView.Adapter<listaproduc
 
     @Override
     public void onBindViewHolder(@NonNull listaproducto_ventaAdapter.PRODUCTOVENDIDOviewGolder holder, int position) {
-        holder.viewNombre_vendido.setText("NOMBRE: " + listaPRODUCTOS_VENDIDOS.get(position).getNombre());
-        holder.viewPrecio_vendido.setText("PRECIO: " + String.valueOf((float) listaPRODUCTOS_VENDIDOS.get(position).getPrecio()));
-        holder.viewCantidad_vendido.setText("CANTIDAD: " + String.valueOf((float) listaPRODUCTOS_VENDIDOS.get(position).getCantidad()));
-        holder.viewTipoUnidad_vendido.setText(" " + listaPRODUCTOS_VENDIDOS.get(position).getTipounidad());
-        holder.viewPagoTotal.setText("TOTAL: " + (listaPRODUCTOS_VENDIDOS.get(position).getCantidad() * listaPRODUCTOS_VENDIDOS.get(position).getPrecio()));
+        holder.viewNombre_vendido.setText("NOMBRE: " + listaPRODUCTOS_VENDIDOS.get(position).getNombre_venta());
+        holder.viewPrecio_vendido.setText("PRECIO: " + String.valueOf(listaPRODUCTOS_VENDIDOS.get(position).getPrecio_venta()));
+        holder.viewCantidad_vendido.setText("CANTIDAD: " + String.valueOf(listaPRODUCTOS_VENDIDOS.get(position).getCantidad_venta()));
+        holder.viewTipoUnidad_vendido.setText(" " + listaPRODUCTOS_VENDIDOS.get(position).getTipounidad_venta());
+        holder.viewPagoTotal.setText("TOTAL: " + (listaPRODUCTOS_VENDIDOS.get(position).getCantidad_venta() * listaPRODUCTOS_VENDIDOS.get(position).getPrecio_venta()));
     }
 
     @Override
