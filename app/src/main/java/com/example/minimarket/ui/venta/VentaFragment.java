@@ -154,7 +154,11 @@ public class VentaFragment extends Fragment {
             } else {
                 if (producto_nombre.getText().toString().equals("") || producto_marca.getText().toString().equals("") || producto_precio.getText().toString().equals("") || producto_precio.getText().toString().equals(".") || producto_cantidad.getText().toString().equals("") || producto_cantidad.getText().toString().equals(".") || producto_tipounidad.getText().toString().equals("")) {
 
-                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS CON DATOS VALIDOS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+
+                } else if (producto_fecha.getText().toString().equals("")) {
+
+                    Toast.makeText(getContext(), "SELECCIONE UN PRODUCTO DEL STOCK |HOME|", Toast.LENGTH_SHORT).show();
 
                 } else if (Double.parseDouble(producto_precio.getText().toString()) <= 0) {
 
